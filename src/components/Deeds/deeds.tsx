@@ -42,9 +42,10 @@ export default function Deeds(props: Deeds) {
 	}, [db]);
 
 	return (
-		<div className='flex gap-4 border-2 py-6 px-12 m-4'>
+		<div className='text-[32px] flex  gap-4 border-2 py-6 px-12 m-4'>
 			<p>My Hasanat:</p>
-			<p>{myHasanat}</p>
+			<p className='text-green-500 text-[32px]'>{myHasanat}</p>
+			<img className='w-12' src='/images/level/bronze.png' alt='' />
 		</div>
 	);
 }
