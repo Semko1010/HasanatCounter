@@ -1,46 +1,46 @@
 [
 	{
 		"currentPage": 1,
-		"image1": "/images/baqara/page001.png",
+		"image1": "/images/medina/holy-quran-beautiful-arabic-text_0003.png",
 
-		"image2": "/images/baqara/page002.png",
+		"image2": "/images/medina/holy-quran-beautiful-arabic-text_0004.png",
 		"hasanatPage1": 1410,
 		"hasanatPage2": 870
 	},
 	{
 		"currentPage": 3,
-		"image1": "/images/baqara/page003.png",
+		"image1": "/images/medina/holy-quran-beautiful-arabic-text_0005.png",
 
-		"image2": "/images/baqara/page004.png",
+		"image2": "/images/medina/holy-quran-beautiful-arabic-text_0006.png",
 		"hasanatPage1": 5700,
 
 		"hasanatPage2": 5780
 	},
 	{
 		"currentPage": 5,
-		"image1": "/images/baqara/page005.png",
-		"image2": "/images/baqara/page006.png",
+		"image1": "/images/quran-madina/holy-quran-beautiful-arabic-text_0007.webp",
+		"image2": "/images/quran-madina/holy-quran-beautiful-arabic-text_0008.webp",
 		"hasanatPage1": 5160,
 		"hasanatPage2": 6050
 	},
 	{
 		"currentPage": 7,
-		"image1": "/images/baqara/page007.png",
-		"image2": "/images/baqara/page008.png",
+		"image1": "/images/quran-madina/holy-quran-beautiful-arabic-text_0009.webp",
+		"image2": "/images/quran-madina/holy-quran-beautiful-arabic-text_0010.webp",
 		"hasanatPage1": 6150,
 		"hasanatPage2": 5610
 	},
 	{
 		"currentPage": 9,
-		"image1": "/images/baqara/page009.png",
-		"image2": "/images/baqara/page010.png",
+		"image1": "/images/quran-madina/holy-quran-beautiful-arabic-text_0011.webp",
+		"image2": "/images/quran-madina/holy-quran-beautiful-arabic-text_0012.webp",
 		"hasanatPage1": 5460,
 		"hasanatPage2": 5600
 	},
 	{
 		"currentPage": 11,
-		"image1": "/images/baqara/page011.png",
-		"image2": "/images/baqara/page012.png",
+		"image1": "/images/quran-madina/holy-quran-beautiful-arabic-text_0013.webp",
+		"image2": "/images/quran-madina/holy-quran-beautiful-arabic-text_0014.webp",
 		"hasanatPage1": 5820,
 		"hasanatPage2": 5540
 	},

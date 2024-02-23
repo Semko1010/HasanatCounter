@@ -1,7 +1,8 @@
 "use client";
 import suras from "../../api/suras.json";
 import quranJs from "../../api/quranJs.json";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import page from "@/app/page";
 interface CurrentPage {
 	currentPage: {
 		currentPage: number;
@@ -12,10 +13,14 @@ interface CurrentPage {
 export default function Siderbar(props: CurrentPage) {
 	const [transform, setTransform] = useState(350);
 	const [show, setShow] = useState(false);
+	const [search, setSearch] = useState<number>(2);
+	function handleSearch(e: any) {
+		props.currentPage.setCurrentPage(e);
+	}
 
 	return (
 		<div>
-			<div className='flex h-screen antialiased text-gray-900 bg-gray-100 dark:bg-dark dark:text-light'>
+			<div className='flex  antialiased text-gray-900 bg-gray-100 dark:bg-dark dark:text-light'>
 				{/* <div
 							x-ref='loading'
 							className='fixed inset-0 z-50 flex items-center justify-center text-2xl font-semibold text-white bg-blue-600'>
@@ -77,25 +82,25 @@ export default function Siderbar(props: CurrentPage) {
 										onClick={() => props.currentPage.setCurrentPage(u.page)}
 										className='mt-4 ml-4'>
 										<a href='#' className='flex items-center space-x-2'>
-											<svg
-												className='w-6 h-6'
-												aria-hidden='true'
-												xmlns='http://www.w3.org/2000/svg'
-												fill='none'
-												viewBox='0 0 24 24'
-												stroke='currentColor'>
-												<path
-													strokeLinecap='round'
-													strokeLinejoin='round'
-													strokeWidth={2}
-													d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'
-												/>
-											</svg>
+											<img src={u.location} alt='' />
 											<span>{u.sura}</span>
 										</a>
 									</div>
 								);
 							})}
+							<div className='mt-4 text-start'>
+								<label className='text-center' htmlFor=''>
+									Search Site
+								</label>
+								<input
+									onChange={e => handleSearch(e.target.value)}
+									className='border-4'
+									type='text'
+								/>
+								<button onClick={() => props.currentPage.setCurrentPage(5)}>
+									Search
+								</button>
+							</div>
 						</nav>
 						<div className='flex-shrink-0 p-4'>
 							<button className='flex items-center space-x-2'>

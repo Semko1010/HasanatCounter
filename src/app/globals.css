@@ -22,3 +22,6 @@
     font-family: "quran5"; 
     src: url("../../public/font/quran5.ttf"); 
 } 
+body{
+    background: #F8F8FF;
+}

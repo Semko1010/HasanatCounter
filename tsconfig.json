@@ -27,7 +27,7 @@
 		"**/*.ts",
 		"**/*.tsx",
 		".next/types/**/*.ts",
-		"src/app/baqara/[baqaraId]/page.tsx"
+		"src/app/quranMain/[quranMainId]/page.tsx"
 	],
 	"exclude": ["node_modules"]
 }
