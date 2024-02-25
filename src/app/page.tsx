@@ -10,7 +10,7 @@ export default function Home() {
 
 	return (
 		<main className='bg-[#F8F8FF] flex flex-col justify-center items-center'>
-			{/* <Login loggedUser={{ loggedUser, setLoggedUser }} /> */}
+			<Login loggedUser={{ loggedUser, setLoggedUser }} />
 			<Deeds />
 
 			<QuranMain />

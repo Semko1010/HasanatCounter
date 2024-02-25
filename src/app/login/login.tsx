@@ -18,10 +18,11 @@ interface LoggedUser {
 export default function Login(loggedUser: LoggedUser) {
 	const [userName, setUserName] = useState("semir01020@gmail.com");
 	const [password, setPassword] = useState("111111");
+	console.log("loggedUser");
 
 	const UserLogin = async () => {
-		const status = await UserLoginController(userName, password);
-
+		const userInfos = await UserLoginController(userName, password);
+		loggedUser.loggedUser.setLoggedUser(userInfos);
 		const q = query(collection(db, "login"));
 		const unsubscribe = onSnapshot(q, (querySnapshot: any) => {
 			querySnapshot.forEach((doc: any) => {

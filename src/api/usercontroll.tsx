@@ -11,17 +11,15 @@ export const UserLoginController = async (
 	const Login = doc(db, "login", userName);
 	const docSnap = await getDoc(Login);
 	if (docSnap.exists()) {
-		console.log("true");
-
 		if (
 			docSnap.data().username == userName &&
 			docSnap.data().password == password
 		) {
-			return true;
+			return docSnap.data();
 		} else {
 			return false;
 		}
 	} else {
-		console.log("false");
+		console.log("User not Exist");
 	}
 };
