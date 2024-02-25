@@ -15,6 +15,7 @@ export default function Deeds() {
 		const unsubscribe = onSnapshot(q, (querySnapshot: any) => {
 			querySnapshot.forEach((doc: any) => {
 				setHasanat(doc.data().hasanat);
+				console.log("doc.data()", doc.data());
 			});
 		});
 	}, [db]);
