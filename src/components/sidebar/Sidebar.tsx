@@ -76,9 +76,10 @@ export default function Siderbar(props: CurrentPage) {
 							</button>
 						</div>
 						<nav className='flex flex-col flex-1 w-64 p-4 mt-4'>
-							{suras.map(u => {
+							{suras.map((u, index) => {
 								return (
 									<div
+										key={index}
 										onClick={() => props.currentPage.setCurrentPage(u.page)}
 										className='mt-4 ml-4'>
 										<a href='#' className='flex items-center space-x-2'>
