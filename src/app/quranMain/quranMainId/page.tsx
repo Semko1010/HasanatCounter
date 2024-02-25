@@ -10,6 +10,9 @@ import quranJs from "../../../api/quranJs.json";
 import Sidebar from "../../../components/sidebar/Sidebar";
 import Image from "next/image";
 
+
+
+
 export default function QuranMain() {
 	// const [page, setPage] = useState({ firstPage: 5, secondPage: 6 });
 	const [currentPage, setCurrentPage] = useState(1);

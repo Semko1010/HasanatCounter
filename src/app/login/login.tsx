@@ -10,33 +10,43 @@ interface User {
 
 interface LoggedUser {
 	loggedUser: {
-		loggedUser: User[];
+		loggedUser: User[] | undefined;
 		setLoggedUser: Dispatch<SetStateAction<never[]>>;
 	};
 }
+interface userInfos {
+	userInfos: {
+		loggedUser: User[];
+		// setLoggedUser: Dispatch<SetStateAction<never[]>>;
+	};
+}
 
-export default function Login(loggedUser: LoggedUser) {
-	const [userName, setUserName] = useState("semir01020@gmail.com");
-	const [password, setPassword] = useState("111111");
-	console.log("loggedUser");
+export default function Login(loggedUser: any) {
+	const [userName, setUserName] = useState<string>("semir01020@gmail.com");
+	const [password, setPassword] = useState<string>("111111");
 
 	const UserLogin = async () => {
 		const userInfos = await UserLoginController(userName, password);
 		loggedUser.loggedUser.setLoggedUser(userInfos);
-		const q = query(collection(db, "login"));
-		const unsubscribe = onSnapshot(q, (querySnapshot: any) => {
-			querySnapshot.forEach((doc: any) => {
-				loggedUser.loggedUser.setLoggedUser(doc.data());
-			});
+		console.log("userInfos", userInfos);
 
-			return () => unsubscribe();
-		});
-		if (status) {
-			console.log("Vorhanden");
-		} else {
-			console.log("Nicht Vorhanden");
-		}
+		// const q = query(collection(db, "login"));
+		// const unsubscribe = onSnapshot(q, (querySnapshot: any) => {
+		// 	querySnapshot.forEach((doc: any) => {
+		// 		loggedUser.loggedUser.setLoggedUser(doc.data());
+		// 	});
+
+		// 	return () => unsubscribe();
+		// });
+		// if (status) {
+		// 	console.log("Vorhanden");
+		// } else {
+		// 	console.log("Nicht Vorhanden");
+		// }
 	};
+	useEffect(() => {
+		console.log("test", loggedUser.loggedUser);
+	}, [loggedUser.loggedUser.loggedUser]);
 	// const hmac = createHmac("sha256", password);
 	// const cryptedPass = hmac.digest("hex");
 

@@ -5,7 +5,6 @@ export const UserLoginController = async (
 	userName: string,
 	password: string,
 ) => {
-	// Passwort entschlüsseln
 	console.log("userName", userName);
 
 	const Login = doc(db, "login", userName);
