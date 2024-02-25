@@ -1,16 +1,10 @@
-import {
-	collection,
-	addDoc,
-	getDoc,
-	querySnapshot,
-	query,
-	onSnapshot,
-	deleteDoc,
-	doc,
-} from "firebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
 import { db } from "../api/firebase/firebase";
 
-export const UserLoginController = async (userName, password) => {
+export const UserLoginController = async (
+	userName: string,
+	password: string,
+) => {
 	// Passwort entschlüsseln
 	console.log("userName", userName);
 

@@ -9,33 +9,12 @@ import ClaimDeedsLeft from "../../../components/Buttons/ClaimDeeds/ClaimDeedsLef
 import quranJs from "../../../api/quranJs.json";
 import Sidebar from "../../../components/sidebar/Sidebar";
 import Image from "next/image";
-interface Deeds {
-	deeds: {
-		deeds: number;
-		setDeeds: Dispatch<SetStateAction<number>>;
-	};
-}
 
-export default function Baqara(props: Deeds) {
+export default function QuranMain() {
 	// const [page, setPage] = useState({ firstPage: 5, secondPage: 6 });
 	const [currentPage, setCurrentPage] = useState(1);
 	const [animation, setAnimation] = useState("animate-ping");
 	const [hiddenFirst, sethiddenFirst] = useState("hidden");
-	const [hiddenSecond, sethiddenSecond] = useState("hidden");
-	const hiddenFuncFirst = () => {
-		sethiddenFirst("");
-		// setAnimation("animate-ping");
-		setTimeout(() => {
-			sethiddenFirst("hidden");
-		}, 500);
-	};
-	const hiddenFuncSecond = () => {
-		sethiddenSecond("");
-		// setAnimation("animate-ping");
-		setTimeout(() => {
-			sethiddenSecond("hidden");
-		}, 500);
-	};
 
 	return (
 		<div className='flex  flex-start '>
@@ -70,10 +49,7 @@ export default function Baqara(props: Deeds) {
 												/>
 
 												<div className='flex p-4 bg-white align-center justify-center gap-4'>
-													<ClaimDeedsLeft
-														deeds={props.deeds}
-														pageDeeds={page.hasanatPage2}
-													/>
+													<ClaimDeedsLeft pageDeeds={page.hasanatPage2} />
 
 													<p
 														className={`${animation} ${hiddenFirst} absolute top-0 text-[green] text-3xl`}>{`+${page.hasanatPage2} Hasanat`}</p>
@@ -90,10 +66,7 @@ export default function Baqara(props: Deeds) {
 													loading='lazy'
 												/>
 												<div className='flex p-4 bg-white align-center justify-center gap-4'>
-													<ClaimDeedsRight
-														deeds={props.deeds}
-														pageDeeds={page.hasanatPage1}
-													/>
+													<ClaimDeedsRight pageDeeds={page.hasanatPage1} />
 												</div>
 											</div>
 										</>

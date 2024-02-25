@@ -1,17 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { db } from "../../api/firebase/firebase";
 import { UserLoginController } from "../../api/usercontroll";
-import {
-	collection,
-	addDoc,
-	getDoc,
-	querySnapshot,
-	query,
-	onSnapshot,
-	deleteDoc,
-	doc,
-	setDoc,
-} from "firebase/firestore";
+import { collection, query, onSnapshot } from "firebase/firestore";
 interface User {
 	hasanat: number;
 	password: string;

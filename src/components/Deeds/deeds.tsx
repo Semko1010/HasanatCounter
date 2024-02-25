@@ -1,17 +1,6 @@
 "use client";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import {
-	collection,
-	addDoc,
-	getDoc,
-	querySnapshot,
-	query,
-	onSnapshot,
-	deleteDoc,
-	doc,
-	setDoc,
-	updateDoc,
-} from "firebase/firestore";
+import { collection, query, onSnapshot } from "firebase/firestore";
 import { db } from "../../api/firebase/firebase";
 interface User {
 	hasanat: number;
@@ -19,24 +8,13 @@ interface User {
 	username: string;
 }
 
-interface Deeds {
-	deeds: {
-		deeds: number;
-		setDeeds: Dispatch<SetStateAction<number>>;
-	};
-	loggedUser: {
-		loggedUser: User[];
-	};
-}
-
-export default function Deeds(props: Deeds) {
+export default function Deeds() {
 	const [myHasanat, setHasanat] = useState(0);
 	useEffect(() => {
 		const q = query(collection(db, "login"));
 		const unsubscribe = onSnapshot(q, (querySnapshot: any) => {
 			querySnapshot.forEach((doc: any) => {
 				setHasanat(doc.data().hasanat);
-				console.log("Deeds", doc.data().hasanat);
 			});
 		});
 	}, [db]);

@@ -8,10 +8,6 @@ import {
 	updateDoc,
 } from "firebase/firestore";
 interface Deeds {
-	deeds: {
-		deeds: any;
-		setDeeds: Dispatch<SetStateAction<number>>;
-	};
 	pageDeeds: number;
 }
 
