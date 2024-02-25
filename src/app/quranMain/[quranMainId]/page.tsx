@@ -67,7 +67,7 @@ export default function Baqara(props: Deeds) {
 													loading='lazy'
 												/>
 
-												<div className='flex bg-white align-center justify-center gap-4'>
+												<div className='flex p-4 bg-white align-center justify-center gap-4'>
 													<ClaimDeedsLeft
 														deeds={props.deeds}
 														pageDeeds={page.hasanatPage2}
@@ -87,7 +87,7 @@ export default function Baqara(props: Deeds) {
 													alt=''
 													loading='lazy'
 												/>
-												<div className='flex b-y-2 bg-white align-center justify-center gap-4'>
+												<div className='flex p-4 bg-white align-center justify-center gap-4'>
 													<ClaimDeedsRight
 														deeds={props.deeds}
 														pageDeeds={page.hasanatPage1}
