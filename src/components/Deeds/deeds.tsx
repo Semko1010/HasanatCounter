@@ -1,28 +1,57 @@
 "use client";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { collection, query, onSnapshot } from "firebase/firestore";
+import {
+	collection,
+	query,
+	onSnapshot,
+	doc,
+	getDoc,
+	DocumentData,
+} from "firebase/firestore";
 import { db } from "../../api/firebase/firebase";
-interface User {
+interface UserData {
 	hasanat: number;
-	password: string;
 	username: string;
+	password: string;
 }
 
-export default function Deeds() {
+interface Props {
+	loggedUser: UserData | null;
+}
+
+export default function Deeds({ loggedUser }: Props) {
+	const [deeds, setDeeds] = useState();
+
 	const [myHasanat, setHasanat] = useState(0);
-	useEffect(() => {
-		const q = query(collection(db, "login"));
-		const unsubscribe = onSnapshot(q, (querySnapshot: any) => {
-			querySnapshot.forEach((doc: any) => {
-				setHasanat(doc.data().hasanat);
-				console.log("doc.data()", doc.data());
-			});
-		});
-	}, [db]);
+	const fetchHasanat = async () => {
+		console.log("loggedUser", loggedUser);
+
+		if (loggedUser) {
+			const userDocRef = doc(db, "login", loggedUser.username);
+			const docSnap = await getDoc(userDocRef);
+
+			if (docSnap.exists()) {
+				const userData = docSnap.data();
+				setHasanat(userData.hasanat);
+			} else {
+				console.log("Benutzerdokument nicht gefunden.");
+			}
+		}
+	};
+	// const Test = async () => {
+	// 	const getDeeds = doc(
+	// 		db,
+	// 		"login",
+	// 		"loggedUser.username,"
+	// 	);
+	// 	const docSnap: any = await getDoc(getDeeds);
+
+	// 	setHasanat(docSnap.data().hasanat);
+	// };
 
 	return (
 		<div className='text-[32px] flex  gap-4 border-2 py-6 px-12 m-4'>
-			<p>My Hasanat:</p>
+			<p onClick={fetchHasanat}>My Hasanat:</p>
 			<p className='text-green-500 text-[32px]'>{myHasanat}</p>
 			<img className='w-12' src='/images/level/bronze.png' alt='' />
 		</div>
