@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import QuranMain from "./quranMain/quranMainId/page";
 import Deeds from "../components/Deeds/deeds";
 import Login from "./login/login";
+import Register from "./register/register";
 
 interface UserData {
 	hasanat: number;
@@ -15,7 +16,10 @@ export default function Home() {
 	return (
 		<main className='bg-[#F8F8FF] flex flex-col justify-center items-center'>
 			{loggedUser == null ? (
-				<Login loggedUser={loggedUser} setLoggedUser={setLoggedUser} />
+				<>
+					<Login loggedUser={loggedUser} setLoggedUser={setLoggedUser} />
+					<Register />
+				</>
 			) : (
 				<>
 					<Deeds loggedUser={loggedUser} />

@@ -6,6 +6,7 @@ import {
 	onSnapshot,
 	doc,
 	updateDoc,
+	getDoc,
 } from "firebase/firestore";
 interface Deeds {
 	pageDeeds: number;
@@ -16,31 +17,21 @@ export default function ClaimDeeds(props: Deeds) {
 	const [hidden, sethiddenFirst] = useState("hidden");
 	const [checkbox, setCheckbox] = useState(false);
 
-	let name = "semir01020@gmail.com";
-
-	useEffect(() => {
-		const q = query(collection(db, "login"));
-		const unsubscribe = onSnapshot(q, (querySnapshot: any) => {
-			querySnapshot.forEach((doc: any) => {
-				setMiddleDeeds(doc.data().hasanat);
-			});
-
-			return () => unsubscribe();
-		});
-	}, [db]);
-
 	const hiddenFuncFirst = async () => {
 		const docRef = doc(db, "login", "semir01020@gmail.com");
+		const docSnap = await getDoc(docRef);
+		if (docSnap.exists()) {
+			const hasanat = docSnap.data().hasanat || 0;
+			updateDoc(docRef, {
+				hasanat: hasanat + props.pageDeeds,
+			}).then(() => {
+				sethiddenFirst("");
 
-		updateDoc(docRef, {
-			hasanat: middleDeeds + props.pageDeeds,
-		}).then(() => {
-			sethiddenFirst("");
-
-			setTimeout(() => {
-				sethiddenFirst("hidden");
-			}, 500);
-		});
+				setTimeout(() => {
+					sethiddenFirst("hidden");
+				}, 500);
+			});
+		}
 	};
 
 	return (

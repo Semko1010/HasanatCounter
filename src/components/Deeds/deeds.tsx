@@ -22,7 +22,7 @@ interface Props {
 export default function Deeds({ loggedUser }: Props) {
 	const [deeds, setDeeds] = useState();
 
-	const [myHasanat, setHasanat] = useState(0);
+	const [myHasanat, setHasanat] = useState("");
 
 	useEffect(() => {
 		const getUserData = async () => {
@@ -31,7 +31,13 @@ export default function Deeds({ loggedUser }: Props) {
 				const unsubscribe = onSnapshot(userDocRef, docSnap => {
 					if (docSnap.exists()) {
 						const userData = docSnap.data();
-						setHasanat(userData.hasanat);
+						if (docSnap.data().hasanat >= 1000) {
+							const formattedNumber =
+								(docSnap.data().hasanat / 1000).toFixed(1) + "K";
+							setHasanat(formattedNumber);
+							return formattedNumber;
+						} else {
+						}
 					} else {
 						console.log("Benutzerdokument nicht gefunden.");
 					}
@@ -46,6 +52,7 @@ export default function Deeds({ loggedUser }: Props) {
 
 		getUserData();
 	}, [db, loggedUser]);
+	function formatNumberWithK() {}
 
 	return (
 		<div className='text-[18px] flex items-center gap-4 border-2 py-6 px-12 m-4'>

@@ -50,8 +50,8 @@ export default function QuranMain() {
 						onTouchStart={onTouchStart}
 						onTouchMove={onTouchMove}
 						onTouchEnd={onTouchEnd}
-						className='flex flex-col align-center justify-center'>
-						<div className='gap-2 flex-col-reverse border-2 flex justify-center items-center'>
+						className='flex flex-col  align-center justify-center'>
+						<div className='gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center'>
 							{quranJs.map(page => {
 								if (currentPage % 2 == 0) {
 									setCurrentPage(currentPage - 1);
