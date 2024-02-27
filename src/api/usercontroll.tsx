@@ -5,7 +5,7 @@ export const UserLoginController = async (
 	userName: string,
 	password: string,
 ) => {
-	console.log("userName", userName);
+	console.log("UserControl", userName, password);
 
 	const Login = doc(db, "login", userName);
 	const docSnap = await getDoc(Login);

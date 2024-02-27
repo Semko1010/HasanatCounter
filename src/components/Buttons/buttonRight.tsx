@@ -11,7 +11,11 @@ export default function ButtonRight(props: Page) {
 	return (
 		<a
 			onClick={() =>
-				props.currentPage.setCurrentPage((props.currentPage.currentPage -= 2))
+				props.currentPage.setCurrentPage(
+					(props.currentPage.currentPage -= 2) < 1
+						? 1
+						: (props.currentPage.currentPage -= 2),
+				)
 			}
 			href='#_'
 			className='relative inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-green-500 rounded-full shadow-md group'>
