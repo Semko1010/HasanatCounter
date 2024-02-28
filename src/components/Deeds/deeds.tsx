@@ -54,7 +54,7 @@ export default function Deeds({ loggedUser }: Props) {
 	}, [db, loggedUser]);
 
 	return (
-		<div className='bg-white z-20 fixed lg:static top-0 h-[30px] rounded-lg text-[18px] flex items-center gap-4 border-2 py-6 px-2 m-4'>
+		<div className='fixed top-0 '>
 			<p>My Hasanat:</p>
 			<p className='text-green-500 text-[28px]'>{myHasanat}</p>
 			{/* <img className='w-12' src='/images/level/bronze.png' alt='' /> */}
