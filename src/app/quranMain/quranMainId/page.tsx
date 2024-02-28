@@ -32,7 +32,6 @@ export default function QuranMain() {
 			isLeftSwipe
 				? setCurrentPage(currentPage - 2 < 1 ? 1 : currentPage - 2)
 				: setCurrentPage(currentPage + 2);
-		// add your conditional logic here
 	};
 	return (
 		<div className='flex flex-start '>
@@ -51,7 +50,7 @@ export default function QuranMain() {
 						onTouchMove={onTouchMove}
 						onTouchEnd={onTouchEnd}
 						className='flex flex-col  align-center justify-center'>
-						<div className='gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center'>
+						<div className='mt-20 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center'>
 							{quranJs.map(page => {
 								if (currentPage % 2 == 0) {
 									setCurrentPage(currentPage - 1);
@@ -62,13 +61,13 @@ export default function QuranMain() {
 											<div className=' '>
 												<Image
 													src={page.image2}
-													width={600}
+													width={650}
 													height={940}
 													alt=''
 													loading='lazy'
 												/>
 
-												<div className='flex p-4 bg-white align-center justify-center gap-4'>
+												<div className='relative flex p-4 bg-white align-center justify-center gap-4'>
 													<ClaimDeedsLeft pageDeeds={page.hasanatPage2} />
 
 													<p
@@ -78,12 +77,12 @@ export default function QuranMain() {
 											<div className=''>
 												<Image
 													src={page.image1}
-													width={600}
+													width={650}
 													height={940}
 													alt=''
 													loading='lazy'
 												/>
-												<div className='flex p-4 bg-white align-center justify-center gap-4'>
+												<div className='relative flex p-4 bg-white align-center justify-center gap-4'>
 													<ClaimDeedsRight pageDeeds={page.hasanatPage1} />
 												</div>
 											</div>

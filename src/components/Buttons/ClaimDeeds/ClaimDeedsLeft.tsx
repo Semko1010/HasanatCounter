@@ -13,9 +13,9 @@ interface Deeds {
 }
 
 export default function ClaimDeeds(props: Deeds) {
-	const [middleDeeds, setMiddleDeeds] = useState(0);
 	const [hidden, sethiddenFirst] = useState("hidden");
 	const [checkbox, setCheckbox] = useState(false);
+	const [input, setInput] = useState(false);
 
 	const hiddenFuncFirst = async () => {
 		const docRef = doc(db, "login", "semir01020@gmail.com");
@@ -32,8 +32,13 @@ export default function ClaimDeeds(props: Deeds) {
 				}, 500);
 			});
 		}
+		setCheckbox(!checkbox);
+		setInput(!input);
 	};
-
+	const changeState = () => {
+		setCheckbox(!checkbox);
+		setInput(!input);
+	};
 	return (
 		<>
 			<div className='flex flex-col'>
@@ -42,8 +47,9 @@ export default function ClaimDeeds(props: Deeds) {
 					I read this page
 				</label>
 				<input
+					checked={input}
 					className='input'
-					onChange={() => setCheckbox(!checkbox)}
+					onChange={changeState}
 					type='checkbox'
 				/>
 			</div>
@@ -71,7 +77,7 @@ export default function ClaimDeeds(props: Deeds) {
 			)}
 
 			<p
-				className={`animate-ping ${hidden} absolute top-12 text-[green] text-3xl`}>{`+${props.pageDeeds} Hasanat`}</p>
+				className={`animate-ping ${hidden} absolute bottom-24  text-[green] text-xl lg:text-3xl`}>{`+${props.pageDeeds} Hasanat`}</p>
 		</>
 	);
 }

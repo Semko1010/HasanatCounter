@@ -16,6 +16,7 @@ export default function ClaimDeeds(props: Deeds) {
 	const [hidden, sethiddenFirst] = useState("hidden");
 	const [middleDeeds, setMiddleDeeds] = useState(0);
 	const [checkbox, setCheckbox] = useState(false);
+	const [input, setInput] = useState(false);
 
 	const hiddenFuncFirst = async () => {
 		const docRef = doc(db, "login", "semir01020@gmail.com");
@@ -32,6 +33,12 @@ export default function ClaimDeeds(props: Deeds) {
 				}, 500);
 			});
 		}
+		setCheckbox(!checkbox);
+		setInput(!input);
+	};
+	const changeState = () => {
+		setCheckbox(!checkbox);
+		setInput(!input);
 	};
 	return (
 		<>
@@ -48,7 +55,6 @@ export default function ClaimDeeds(props: Deeds) {
 			) : (
 				<>
 					<button
-						onClick={hiddenFuncFirst}
 						disabled
 						className='relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group'>
 						<span className='absolute w-0 h-0 transition-all duration-500 ease-out bg-green-500 rounded-full group-hover:w-56 group-hover:h-56'></span>
@@ -59,15 +65,17 @@ export default function ClaimDeeds(props: Deeds) {
 			)}
 
 			<p
-				className={`animate-ping ${hidden} absolute top-12 text-[green] text-3xl`}>{`+${props.pageDeeds} Hasanat`}</p>
+				className={`animate-ping ${hidden} absolute bottom-24 text-[green] text-xl lg:text-3xl`}>{`+${props.pageDeeds} Hasanat`}</p>
 			<div className='flex flex-col'>
 				<label className='' htmlFor='input'>
 					{" "}
 					I read this page
 				</label>
 				<input
+					checked={input}
+					id='checkBox'
 					className='input'
-					onChange={() => setCheckbox(!checkbox)}
+					onChange={changeState}
 					type='checkbox'
 				/>
 			</div>
