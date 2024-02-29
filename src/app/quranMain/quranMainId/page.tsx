@@ -17,6 +17,8 @@ export default function QuranMain() {
 	const [hiddenFirst, sethiddenFirst] = useState("hidden");
 	const [touchStart, setTouchStart] = useState(null);
 	const [touchEnd, setTouchEnd] = useState(null);
+	const [transform, setTransform] = useState(0);
+	const [leftHidden, setLeftHidden] = useState("");
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [preloadedImages, setPreloadedImages] = useState<HTMLImageElement[]>(
 		[],
@@ -28,29 +30,51 @@ export default function QuranMain() {
 		setTouchEnd(null); // otherwise the swipe is fired even with usual touch events
 		setTouchStart(e.targetTouches[0].clientX);
 	};
+
+	const Left = () => {
+		setTransform(-750);
+		setLeftHidden("opacity-0");
+		setTimeout(() => {
+			setTransform(750);
+			setCurrentIndex(
+				currentIndex - 2 < 0 ? preloadedImages.length - 2 : currentIndex - 2,
+			);
+		}, 250);
+		setTimeout(() => {
+			setLeftHidden("");
+			setTransform(0);
+		}, 600);
+	};
+
+	const Right = () => {
+		setTransform(750);
+		setLeftHidden("opacity-0");
+		setTimeout(() => {
+			setTransform(-750);
+			setCurrentIndex(
+				currentIndex + 2 >= preloadedImages.length ? 0 : currentIndex + 2,
+			);
+		}, 250);
+
+		setTimeout(() => {
+			setLeftHidden("");
+
+			setTransform(0);
+		}, 400);
+	};
 	const onTouchMove = (e: any) => setTouchEnd(e.targetTouches[0].clientX);
 	const onTouchEnd = () => {
 		if (!touchStart || !touchEnd) return;
 		const distance = touchStart - touchEnd;
 		const isLeftSwipe = distance > minSwipeDistance;
 		const isRightSwipe = distance < -minSwipeDistance;
-		if (isLeftSwipe || isRightSwipe)
-			isLeftSwipe
-				? setCurrentIndex(
-						currentIndex - 2 < 0
-							? preloadedImages.length - 2
-							: currentIndex - 2,
-				  )
-				: setCurrentIndex(
-						currentIndex + 2 >= preloadedImages.length ? 0 : currentIndex + 2,
-				  );
+		if (isLeftSwipe || isRightSwipe) isLeftSwipe ? Left() : Right();
 	};
 
 	const func = (url: any) => {
 		const images: any | ((prevState: never[]) => never[]) = [];
 		if (typeof window !== "undefined") {
 			url.forEach((url: any) => {
-				console.log("url", url);
 				const img1 = new (window as any).Image();
 				const img2 = new (window as any).Image();
 				img1.src = url[0].image1;
@@ -73,8 +97,6 @@ export default function QuranMain() {
 
 	useEffect(() => {
 		const handleKeyPress = (event: { key: string }) => {
-			console.log("event", event);
-
 			if (typeof window !== "undefined" && preloadedImages.length > 0) {
 				if (event.key === "ArrowLeft") {
 					setCurrentIndex(
@@ -153,7 +175,9 @@ export default function QuranMain() {
 						onTouchMove={onTouchMove}
 						onTouchEnd={onTouchEnd}
 						className='flex flex-col  align-center justify-center'>
-						<div className='mt-20 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center'>
+						<div
+							style={{ transform: `translateX(${transform}px)`, left: "0" }}
+							className={`${leftHidden} duration-300 mt-20 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center`}>
 							{/* Hier werden immer nur zwei Bilder angezeigt */}
 							<div className='flex flex-col items-center'>
 								<Image

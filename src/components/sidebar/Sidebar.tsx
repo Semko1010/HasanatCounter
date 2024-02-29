@@ -28,7 +28,7 @@ export default function Siderbar(props: SidebarProps) {
 						</div> */}
 				<div
 					style={{ transform: `translateX(-${transform}px)`, left: "0" }}
-					className={`duration-500 fixed inset-y-0 z-10 flex w-80`}>
+					className={`duration-500 fixed inset-y-0 z-40 flex w-80`}>
 					<svg
 						className='absolute inset-0 w-full h-full text-white'
 						style={{ filter: "drop-shadow(10px 0 10px #00000030)" }}
@@ -38,7 +38,7 @@ export default function Siderbar(props: SidebarProps) {
 						xmlns='http://www.w3.org/2000/svg'>
 						<path d='M268.487 0H0V800H247.32C207.957 725 207.975 492.294 268.487 367.647C329 243 314.906 53.4314 268.487 0Z' />
 					</svg>
-					<div className='z-10 flex flex-col flex-1'>
+					<div className='z-50 flex flex-col flex-1'>
 						<div className='flex items-center justify-between flex-shrink-0 w-64 p-4'>
 							<a href='#'>
 								<span className='sr-only'>K-UI</span>
@@ -122,7 +122,7 @@ export default function Siderbar(props: SidebarProps) {
 				<main className='flex flex-col items-center justify-center flex-1'>
 					<button
 						onClick={() => setTransform(0)}
-						className='fixed p-2 text-white bg-black rounded-lg top-5 left-5'>
+						className='fixed z-20 p-2 text-white bg-black rounded-lg top-5 left-5'>
 						<svg
 							className='w-6 h-6'
 							xmlns='http://www.w3.org/2000/svg'
