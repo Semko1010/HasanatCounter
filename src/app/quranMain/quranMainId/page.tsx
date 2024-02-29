@@ -17,7 +17,13 @@ export default function QuranMain() {
 	const [hiddenFirst, sethiddenFirst] = useState("hidden");
 	const [touchStart, setTouchStart] = useState(null);
 	const [touchEnd, setTouchEnd] = useState(null);
+	const [currentIndex, setCurrentIndex] = useState(0);
+	const [preloadedImages, setPreloadedImages] = useState<HTMLImageElement[]>(
+		[],
+	);
+	const [searchInput, setSearchInput] = useState(0);
 	const minSwipeDistance = 50;
+
 	const onTouchStart = (e: any) => {
 		setTouchEnd(null); // otherwise the swipe is fired even with usual touch events
 		setTouchStart(e.targetTouches[0].clientX);
@@ -30,19 +36,114 @@ export default function QuranMain() {
 		const isRightSwipe = distance < -minSwipeDistance;
 		if (isLeftSwipe || isRightSwipe)
 			isLeftSwipe
-				? setCurrentPage(currentPage - 2 < 1 ? 1 : currentPage - 2)
-				: setCurrentPage(currentPage + 2);
+				? setCurrentIndex(
+						currentIndex - 2 < 0
+							? preloadedImages.length - 2
+							: currentIndex - 2,
+				  )
+				: setCurrentIndex(
+						currentIndex + 2 >= preloadedImages.length ? 0 : currentIndex + 2,
+				  );
 	};
+
+	const img = new (window as any).Image();
+
+	const func = (url: any) => {
+		console.log("Call");
+
+		const images: any | ((prevState: never[]) => never[]) = [];
+		url.forEach((url: any) => {
+			console.log("url", url);
+			const img1 = new (window as any).Image();
+			const img2 = new (window as any).Image();
+			img1.src = url[0].image1;
+			img1.alt = url[0].hasanatPage1;
+			img2.src = url[0].image2;
+			img2.alt = url[0].hasanatPage2;
+			images.push(img1);
+			images.push(img2);
+		});
+		setPreloadedImages(images);
+	};
+
+	useEffect(() => {
+		const url = quranJs.map(url => {
+			return [url];
+		});
+		func(url);
+	}, []);
+
+	useEffect(() => {
+		const handleKeyPress = (event: { key: string }) => {
+			console.log("event", event);
+
+			if (preloadedImages.length > 0) {
+				if (event.key === "ArrowLeft") {
+					setCurrentIndex(
+						currentIndex + 2 >= preloadedImages.length ? 0 : currentIndex + 2,
+					);
+				} else if (event.key === "ArrowRight") {
+					showPreviousImages();
+				}
+			}
+		};
+
+		window.addEventListener("keydown", handleKeyPress);
+
+		// Aufräumen, wenn die Komponente unmountet wird
+		return () => {
+			window.removeEventListener("keydown", handleKeyPress);
+		};
+	}, [currentIndex, preloadedImages]);
+
+	const showNextImages = () => {
+		setCurrentIndex(
+			currentIndex + 2 >= preloadedImages.length ? 0 : currentIndex + 2,
+		);
+	};
+
+	const showPreviousImages = () => {
+		setCurrentIndex(
+			currentIndex - 2 < 0 ? preloadedImages.length - 2 : currentIndex - 2,
+		);
+	};
+
+	const handleSearchInputChange = (event: any) => {
+		setSearchInput(parseInt(event.target.value) - 1);
+	};
+
+	const goToSearchedImage = () => {
+		if (Number.isNaN(searchInput)) {
+			console.log("Bitte eine Zahl eingeben");
+		} else {
+			if (searchInput < 0) {
+				console.log("Bitte ab 1 Enngeben");
+			} else {
+				if (searchInput % 2 == 0) {
+					setCurrentIndex(searchInput);
+				} else {
+					setCurrentIndex(searchInput - 1);
+				}
+			}
+		}
+	};
+
 	return (
 		<div className='flex flex-start '>
 			<article>
-				<Sidebar currentPage={{ currentPage, setCurrentPage }} />
+				<Sidebar
+					handleSearchInputChange={handleSearchInputChange}
+					goToSearchedImage={goToSearchedImage}
+				/>
 			</article>
 			<main className=' flex justify-center '>
 				<div className='flex gap-4'>
 					<div className='hidden lg:flex flex-col align-center justify-center'>
-						<div className='flex justify-center items-center'>
+						<div
+							onClick={showNextImages}
+							className='flex justify-center items-center'>
 							<ButtonLeft currentPage={{ currentPage, setCurrentPage }} />
+							{/* <button >Vor</button> */}
 						</div>
 					</div>
 					<div
@@ -51,7 +152,36 @@ export default function QuranMain() {
 						onTouchEnd={onTouchEnd}
 						className='flex flex-col  align-center justify-center'>
 						<div className='mt-20 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center'>
-							{quranJs.map(page => {
+							{/* Hier werden immer nur zwei Bilder angezeigt */}
+							<div className='flex flex-col items-center'>
+								<Image
+									src={preloadedImages[currentIndex + 1]?.src}
+									width={700}
+									height={940}
+									alt={preloadedImages[currentIndex + 1]?.alt}
+									loading='lazy'
+								/>
+								<ClaimDeedsLeft
+									pageDeeds={preloadedImages[currentIndex + 1]?.alt}
+								/>
+							</div>
+
+							<div className='flex flex-col items-center'>
+								<Image
+									src={preloadedImages[currentIndex]?.src}
+									width={700}
+									height={940}
+									alt={preloadedImages[currentIndex]?.alt}
+									loading='lazy'
+								/>
+								<ClaimDeedsRight
+									pageDeeds={preloadedImages[currentIndex]?.alt}
+								/>
+							</div>
+
+							{/* Buttons zum Wechseln der angezeigten Bilder */}
+
+							{/* {quranJs.map(page => {
 								if (currentPage % 2 == 0) {
 									setCurrentPage(currentPage - 1);
 								}
@@ -89,11 +219,13 @@ export default function QuranMain() {
 										</>
 									);
 								}
-							})}
+							})} */}
 						</div>
 					</div>
 					<div className='hidden lg:flex  flex-col align-center justify-center'>
-						<div className='flex justify-center items-center'>
+						<div
+							onClick={showPreviousImages}
+							className='flex justify-center items-center'>
 							<ButtonRight currentPage={{ currentPage, setCurrentPage }} />
 						</div>
 					</div>

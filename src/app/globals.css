@@ -24,4 +24,10 @@
 } 
 body{
     background: #F8F8FF;
+}.even-index {
+    order: -1; /* Bild mit geradem Index wird links angezeigt */
+}
+
+.odd-index {
+    order: 1; /* Bild mit ungeradem Index wird rechts angezeigt */
 }

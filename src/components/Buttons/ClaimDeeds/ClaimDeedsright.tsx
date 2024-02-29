@@ -9,7 +9,7 @@ import {
 	getDoc,
 } from "firebase/firestore";
 interface Deeds {
-	pageDeeds: number;
+	pageDeeds: string;
 }
 
 export default function ClaimDeeds(props: Deeds) {
@@ -24,7 +24,7 @@ export default function ClaimDeeds(props: Deeds) {
 		if (docSnap.exists()) {
 			const hasanat = docSnap.data().hasanat || 0;
 			updateDoc(docRef, {
-				hasanat: hasanat + props.pageDeeds,
+				hasanat: hasanat + parseInt(props.pageDeeds),
 			}).then(() => {
 				sethiddenFirst("");
 
