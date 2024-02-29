@@ -50,20 +50,20 @@ export default function QuranMain() {
 
 	const func = (url: any) => {
 		const images: any | ((prevState: never[]) => never[]) = [];
-		if (typeof window !== "undefined") {
-			url.forEach((url: any) => {
-				console.log("url", url);
-				const img1 = new (window as any).Image();
-				const img2 = new (window as any).Image();
-				img1.src = url[0].image1;
-				img1.alt = url[0].hasanatPage1;
-				img2.src = url[0].image2;
-				img2.alt = url[0].hasanatPage2;
-				images.push(img1);
-				images.push(img2);
-			});
-			setPreloadedImages(images);
-		}
+		// if (typeof window !== "undefined") {
+		// 	url.forEach((url: any) => {
+		// 		console.log("url", url);
+		// 		const img1 = new (window as any).Image();
+		// 		const img2 = new (window as any).Image();
+		// 		img1.src = url[0].image1;
+		// 		img1.alt = url[0].hasanatPage1;
+		// 		img2.src = url[0].image2;
+		// 		img2.alt = url[0].hasanatPage2;
+		// 		images.push(img1);
+		// 		images.push(img2);
+		// 	});
+		// 	setPreloadedImages(images);
+		// }
 	};
 
 	useEffect(() => {
