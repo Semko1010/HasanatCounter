@@ -74,7 +74,7 @@ export default function QuranMain() {
 	}, []);
 
 	useEffect(() => {
-		if (typeof window !== "undefined") {
+		if (typeof window !== "undefined" && preloadedImages.length > 0) {
 			const handleKeyPress = (event: { key: string }) => {
 				console.log("event", event);
 
