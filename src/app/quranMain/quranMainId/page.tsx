@@ -72,23 +72,20 @@ export default function QuranMain() {
 		});
 		func(url);
 	}, []);
-
 	useEffect(() => {
-		const handleKeyPress = (event: { key: string }) => {
-			console.log("event", event);
-
-			if (typeof window !== "undefined" && preloadedImages.length > 0) {
-				if (event.key === "ArrowLeft") {
-					setCurrentIndex(
-						currentIndex + 2 >= preloadedImages.length ? 0 : currentIndex + 2,
-					);
-				} else if (event.key === "ArrowRight") {
-					showPreviousImages();
-				}
-			}
-		};
-
 		if (typeof window !== "undefined") {
+			const handleKeyPress = (event: { key: string }) => {
+				if (preloadedImages.length > 0) {
+					if (event.key === "ArrowLeft") {
+						setCurrentIndex(
+							currentIndex + 2 >= preloadedImages.length ? 0 : currentIndex + 2,
+						);
+					} else if (event.key === "ArrowRight") {
+						showPreviousImages();
+					}
+				}
+			};
+
 			window.addEventListener("keydown", handleKeyPress);
 
 			// Aufräumen, wenn die Komponente unmountet wird
@@ -96,8 +93,6 @@ export default function QuranMain() {
 				window.removeEventListener("keydown", handleKeyPress);
 			};
 		}
-
-		// Aufräumen, wenn die Komponente unmountet wird
 	}, [currentIndex, preloadedImages]);
 
 	const showNextImages = () => {
