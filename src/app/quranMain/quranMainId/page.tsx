@@ -46,24 +46,22 @@ export default function QuranMain() {
 				  );
 	};
 
-	const img = new (window as any).Image();
-
 	const func = (url: any) => {
 		const images: any | ((prevState: never[]) => never[]) = [];
-		// if (typeof window !== "undefined") {
-		// 	url.forEach((url: any) => {
-		// 		console.log("url", url);
-		// 		const img1 = new (window as any).Image();
-		// 		const img2 = new (window as any).Image();
-		// 		img1.src = url[0].image1;
-		// 		img1.alt = url[0].hasanatPage1;
-		// 		img2.src = url[0].image2;
-		// 		img2.alt = url[0].hasanatPage2;
-		// 		images.push(img1);
-		// 		images.push(img2);
-		// 	});
-		// 	setPreloadedImages(images);
-		// }
+		if (typeof window !== "undefined") {
+			url.forEach((url: any) => {
+				console.log("url", url);
+				const img1 = new (window as any).Image();
+				const img2 = new (window as any).Image();
+				img1.src = url[0].image1;
+				img1.alt = url[0].hasanatPage1;
+				img2.src = url[0].image2;
+				img2.alt = url[0].hasanatPage2;
+				images.push(img1);
+				images.push(img2);
+			});
+			setPreloadedImages(images);
+		}
 	};
 
 	useEffect(() => {
@@ -73,32 +71,32 @@ export default function QuranMain() {
 		func(url);
 	}, []);
 
-	// useEffect(() => {
-	// 	const handleKeyPress = (event: { key: string }) => {
-	// 		console.log("event", event);
+	useEffect(() => {
+		const handleKeyPress = (event: { key: string }) => {
+			console.log("event", event);
 
-	// 		if (typeof window !== "undefined" && preloadedImages.length > 0) {
-	// 			if (event.key === "ArrowLeft") {
-	// 				setCurrentIndex(
-	// 					currentIndex + 2 >= preloadedImages.length ? 0 : currentIndex + 2,
-	// 				);
-	// 			} else if (event.key === "ArrowRight") {
-	// 				showPreviousImages();
-	// 			}
-	// 		}
-	// 	};
+			if (typeof window !== "undefined" && preloadedImages.length > 0) {
+				if (event.key === "ArrowLeft") {
+					setCurrentIndex(
+						currentIndex + 2 >= preloadedImages.length ? 0 : currentIndex + 2,
+					);
+				} else if (event.key === "ArrowRight") {
+					showPreviousImages();
+				}
+			}
+		};
 
-	// 	if (typeof window !== "undefined") {
-	// 		window.addEventListener("keydown", handleKeyPress);
+		if (typeof window !== "undefined") {
+			window.addEventListener("keydown", handleKeyPress);
 
-	// 		// Aufräumen, wenn die Komponente unmountet wird
-	// 		return () => {
-	// 			window.removeEventListener("keydown", handleKeyPress);
-	// 		};
-	// 	}
+			// Aufräumen, wenn die Komponente unmountet wird
+			return () => {
+				window.removeEventListener("keydown", handleKeyPress);
+			};
+		}
 
-	// 	// Aufräumen, wenn die Komponente unmountet wird
-	// }, [currentIndex, preloadedImages]);
+		// Aufräumen, wenn die Komponente unmountet wird
+	}, [currentIndex, preloadedImages]);
 
 	const showNextImages = () => {
 		setCurrentIndex(
