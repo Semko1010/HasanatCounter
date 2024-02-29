@@ -99,11 +99,9 @@ export default function QuranMain() {
 		const handleKeyPress = (event: { key: string }) => {
 			if (typeof window !== "undefined" && preloadedImages.length > 0) {
 				if (event.key === "ArrowLeft") {
-					setCurrentIndex(
-						currentIndex + 2 >= preloadedImages.length ? 0 : currentIndex + 2,
-					);
+					Right();
 				} else if (event.key === "ArrowRight") {
-					showPreviousImages();
+					Left();
 				}
 			}
 		};
@@ -185,7 +183,7 @@ export default function QuranMain() {
 									width={700}
 									height={940}
 									alt={preloadedImages[currentIndex + 1]?.alt}
-									loading='lazy'
+									priority={true}
 								/>
 								<ClaimDeedsLeft
 									pageDeeds={preloadedImages[currentIndex + 1]?.alt}
@@ -198,7 +196,7 @@ export default function QuranMain() {
 									width={700}
 									height={940}
 									alt={preloadedImages[currentIndex]?.alt}
-									loading='lazy'
+									priority={true}
 								/>
 								<ClaimDeedsRight
 									pageDeeds={preloadedImages[currentIndex]?.alt}
