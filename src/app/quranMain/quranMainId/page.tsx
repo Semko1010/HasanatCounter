@@ -36,7 +36,6 @@ export default function QuranMain() {
 			"preloadedImages[currentIndex]?.src",
 			preloadedImages[currentIndex]?.src,
 		);
-
 		setTransform(-750);
 		setLeftHidden("opacity-0");
 		setTimeout(() => {
