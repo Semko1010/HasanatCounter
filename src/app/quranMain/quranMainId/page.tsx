@@ -54,7 +54,7 @@ export default function QuranMain() {
 
 	const Right = () => {
 		console.log(
-			"preloadedImages[currentIndex]?.src",
+			"preloadedImages[currentIndex]dd?.src",
 			preloadedImages[currentIndex]?.src,
 		);
 		setTransform(750);
