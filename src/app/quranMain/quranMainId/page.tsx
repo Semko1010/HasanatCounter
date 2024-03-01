@@ -32,10 +32,6 @@ export default function QuranMain() {
 	};
 
 	const Left = () => {
-		console.log(
-			"preloadedImages[currentIndex]?.src",
-			preloadedImages[currentIndex]?.src,
-		);
 		setTransform(-750);
 		setLeftHidden("opacity-0");
 		setTimeout(() => {
@@ -44,19 +40,14 @@ export default function QuranMain() {
 				currentIndex - 2 < 0 ? preloadedImages.length - 2 : currentIndex - 2,
 			);
 		}, 250);
-		if (preloadedImages[currentIndex]?.src) {
-			setTimeout(() => {
-				setLeftHidden("");
-				setTransform(0);
-			}, 600);
-		}
+
+		setTimeout(() => {
+			setLeftHidden("");
+			setTransform(0);
+		}, 600);
 	};
 
 	const Right = () => {
-		console.log(
-			"preloadedImages[currentIndex]dd?.src",
-			preloadedImages[currentIndex]?.src,
-		);
 		setTransform(750);
 		setLeftHidden("opacity-0");
 		setTimeout(() => {
@@ -65,13 +56,12 @@ export default function QuranMain() {
 				currentIndex + 2 >= preloadedImages.length ? 0 : currentIndex + 2,
 			);
 		}, 250);
-		if (preloadedImages[currentIndex]?.src) {
-			setTimeout(() => {
-				setLeftHidden("");
 
-				setTransform(0);
-			}, 400);
-		}
+		setTimeout(() => {
+			setLeftHidden("");
+
+			setTransform(0);
+		}, 400);
 	};
 	const onTouchMove = (e: any) => setTouchEnd(e.targetTouches[0].clientX);
 	const onTouchEnd = () => {
