@@ -161,9 +161,7 @@ export default function QuranMain() {
 			<main className=' flex justify-center '>
 				<div className='flex gap-4'>
 					<div className='hidden lg:flex flex-col align-center justify-center'>
-						<div
-							onClick={showNextImages}
-							className='flex justify-center items-center'>
+						<div onClick={Right} className='flex justify-center items-center'>
 							<ButtonLeft currentPage={{ currentPage, setCurrentPage }} />
 							{/* <button >Vor</button> */}
 						</div>
@@ -183,7 +181,7 @@ export default function QuranMain() {
 									width={700}
 									height={940}
 									alt={preloadedImages[currentIndex + 1]?.alt}
-									priority={true}
+									loading='lazy'
 								/>
 								<ClaimDeedsLeft
 									pageDeeds={preloadedImages[currentIndex + 1]?.alt}
@@ -196,7 +194,7 @@ export default function QuranMain() {
 									width={700}
 									height={940}
 									alt={preloadedImages[currentIndex]?.alt}
-									priority={true}
+									loading='lazy'
 								/>
 								<ClaimDeedsRight
 									pageDeeds={preloadedImages[currentIndex]?.alt}
@@ -247,9 +245,7 @@ export default function QuranMain() {
 						</div>
 					</div>
 					<div className='hidden lg:flex  flex-col align-center justify-center'>
-						<div
-							onClick={showPreviousImages}
-							className='flex justify-center items-center'>
+						<div onClick={Right} className='flex justify-center items-center'>
 							<ButtonRight currentPage={{ currentPage, setCurrentPage }} />
 						</div>
 					</div>
