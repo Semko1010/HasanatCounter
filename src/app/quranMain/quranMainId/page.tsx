@@ -32,6 +32,11 @@ export default function QuranMain() {
 	};
 
 	const Left = () => {
+		console.log(
+			"preloadedImages[currentIndex]?.src",
+			preloadedImages[currentIndex]?.src,
+		);
+
 		setTransform(-750);
 		setLeftHidden("opacity-0");
 		setTimeout(() => {
@@ -49,6 +54,10 @@ export default function QuranMain() {
 	};
 
 	const Right = () => {
+		console.log(
+			"preloadedImages[currentIndex]?.src",
+			preloadedImages[currentIndex]?.src,
+		);
 		setTransform(750);
 		setLeftHidden("opacity-0");
 		setTimeout(() => {
