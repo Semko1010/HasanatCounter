@@ -32,10 +32,7 @@ export default function QuranMain() {
 	};
 
 	const Left = () => {
-		console.log(
-			"Src",
-			preloadedImages[currentIndex]?.src,
-		);
+		console.log("Src", preloadedImages[currentIndex]?.src);
 		setTransform(-750);
 		setLeftHidden("opacity-0");
 		setTimeout(() => {
@@ -81,32 +78,64 @@ export default function QuranMain() {
 		const isRightSwipe = distance < -minSwipeDistance;
 		if (isLeftSwipe || isRightSwipe) isLeftSwipe ? Left() : Right();
 	};
-
-	const func = (url: any) => {
-		const images: any | ((prevState: never[]) => never[]) = [];
-		if (typeof window !== "undefined") {
-			url.forEach((url: any) => {
-				const img1 = new (window as any).Image();
-				const img2 = new (window as any).Image();
-				img1.src = url[0].image1;
-				img1.alt = url[0].hasanatPage1;
-				img2.src = url[0].image2;
-				img2.alt = url[0].hasanatPage2;
-				images.push(img1);
-				images.push(img2);
+	const func = async urls => {
+		const images = [];
+		for (const url of urls) {
+			const img1 = new (window as any).Image();
+			const img2 = new (window as any).Image();
+			img1.src = url[0].image1;
+			img1.alt = url[0].hasanatPage1;
+			img2.src = url[0].image2;
+			img2.alt = url[0].hasanatPage2;
+			await new Promise((resolve, reject) => {
+				img1.onload = img1.onerror = img2.onload = img2.onerror = resolve;
+				img1.onabort = img2.onabort = reject;
 			});
-			setPreloadedImages(images);
+			images.push(img1, img2);
 		}
+		return images;
 	};
+	// const func = (url: any) => {
+	// 	const images: any | ((prevState: never[]) => never[]) = [];
+
+	// 	if (typeof window !== "undefined") {
+	// 		url.forEach((url: any, index: number) => {
+	// 			const img1 = new (window as any).Image();
+	// 			const img2 = new (window as any).Image();
+	// 			img1.src = url[0].image1;
+	// 			img1.alt = url[0].hasanatPage1;
+	// 			img2.src = url[0].image2;
+	// 			img2.alt = url[0].hasanatPage2;
+	// 			images.push(img1);
+	// 			images.push(img2);
+
+	// 			// Vorladen der nächsten Bilder
+	// 			const nextIndex = (index + 1) % url.length;
+	// 			const nextImg1 = new (window as any).Image();
+	// 			const nextImg2 = new (window as any).Image();
+	// 			nextImg1.src = url[nextIndex].image1;
+	// 			nextImg1.alt = url[nextIndex].hasanatPage1;
+	// 			nextImg2.src = url[nextIndex].image2;
+	// 			nextImg2.alt = url[nextIndex].hasanatPage2;
+	// 			images.push(nextImg1);
+	// 			images.push(nextImg2);
+	// 		});
+	// 		setPreloadedImages(images);
+	// 	}
+	// };
 
 	useEffect(() => {
 		const url = quranJs.map(url => {
 			return [url];
 		});
-		func(url);
+		func(url)
+			.then(images => setPreloadedImages(images))
+			.catch(error => console.error("Fehler beim Vorladen der Bilder:", error));
 	}, []);
 
 	useEffect(() => {
+		console.log("preloadedImages", preloadedImages);
+
 		const handleKeyPress = (event: { key: string }) => {
 			if (typeof window !== "undefined" && preloadedImages.length > 0) {
 				if (event.key === "ArrowLeft") {
