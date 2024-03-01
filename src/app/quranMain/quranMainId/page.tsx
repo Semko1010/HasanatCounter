@@ -32,36 +32,38 @@ export default function QuranMain() {
 	};
 
 	const Left = () => {
+		setCurrentIndex(
+			currentIndex - 2 < 0 ? preloadedImages.length - 2 : currentIndex - 2,
+		);
 		setTransform(-750);
 		setLeftHidden("opacity-0");
+
 		setTimeout(() => {
 			setTransform(750);
-			setCurrentIndex(
-				currentIndex - 2 < 0 ? preloadedImages.length - 2 : currentIndex - 2,
-			);
 		}, 250);
 
 		setTimeout(() => {
 			setLeftHidden("");
 			setTransform(0);
-		}, 600);
+		}, 700);
 	};
 
 	const Right = () => {
+		setCurrentIndex(
+			currentIndex + 2 >= preloadedImages.length ? 0 : currentIndex + 2,
+		);
 		setTransform(750);
 		setLeftHidden("opacity-0");
+
 		setTimeout(() => {
 			setTransform(-750);
-			setCurrentIndex(
-				currentIndex + 2 >= preloadedImages.length ? 0 : currentIndex + 2,
-			);
 		}, 250);
 
 		setTimeout(() => {
 			setLeftHidden("");
 
 			setTransform(0);
-		}, 400);
+		}, 700);
 	};
 	const onTouchMove = (e: any) => setTouchEnd(e.targetTouches[0].clientX);
 	const onTouchEnd = () => {
@@ -89,13 +91,37 @@ export default function QuranMain() {
 		}
 	};
 
+	// useEffect(() => {
+	// 	const url = quranJs.map(url => {
+	// 		return [url];
+	// 	});
+	// 	func(url);
+	// }, []);
+	const preloadImages = async (urls: any) => {
+		const images = [];
+		for (const url of urls) {
+			const img1 = new (window as any).Image();
+			const img2 = new (window as any).Image();
+			img1.src = url[0].image1;
+			img1.alt = url[0].hasanatPage1;
+			img2.src = url[0].image2;
+			img2.alt = url[0].hasanatPage2;
+			await new Promise((resolve, reject) => {
+				img1.onload = img1.onerror = img2.onload = img2.onerror = resolve;
+				img1.onabort = img2.onabort = reject;
+			});
+			images.push(img1, img2);
+		}
+		return images;
+	};
 	useEffect(() => {
 		const url = quranJs.map(url => {
 			return [url];
 		});
-		func(url);
+		preloadImages(url)
+			.then(images => setPreloadedImages(images))
+			.catch(error => console.error("Fehler beim Vorladen der Bilder:", error));
 	}, []);
-
 	useEffect(() => {
 		const handleKeyPress = (event: { key: string }) => {
 			if (typeof window !== "undefined" && preloadedImages.length > 0) {
