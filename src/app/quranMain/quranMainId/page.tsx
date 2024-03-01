@@ -11,10 +11,9 @@ import Sidebar from "../../../components/sidebar/Sidebar";
 import Image from "next/image";
 
 export default function QuranMain() {
-	// const [page, setPage] = useState({ firstPage: 5, secondPage: 6 });
 	const [currentPage, setCurrentPage] = useState(1);
-	const [animation, setAnimation] = useState("animate-ping");
-	const [hiddenFirst, sethiddenFirst] = useState("hidden");
+	const [screenValue, setScreenValue] = useState(1);
+
 	const [touchStart, setTouchStart] = useState(null);
 	const [touchEnd, setTouchEnd] = useState(null);
 	const [transform, setTransform] = useState(0);
@@ -33,7 +32,9 @@ export default function QuranMain() {
 
 	const Left = () => {
 		setCurrentIndex(
-			currentIndex - 2 < 0 ? preloadedImages.length - 2 : currentIndex - 2,
+			currentIndex - screenValue < 0
+				? preloadedImages.length - screenValue
+				: currentIndex - screenValue,
 		);
 		setTransform(-750);
 		setLeftHidden("opacity-0");
@@ -45,12 +46,14 @@ export default function QuranMain() {
 		setTimeout(() => {
 			setLeftHidden("");
 			setTransform(0);
-		}, 700);
+		}, 1000);
 	};
 
 	const Right = () => {
 		setCurrentIndex(
-			currentIndex + 2 >= preloadedImages.length ? 0 : currentIndex + 2,
+			currentIndex + screenValue >= preloadedImages.length
+				? 0
+				: currentIndex + screenValue,
 		);
 		setTransform(750);
 		setLeftHidden("opacity-0");
@@ -63,7 +66,7 @@ export default function QuranMain() {
 			setLeftHidden("");
 
 			setTransform(0);
-		}, 700);
+		}, 1000);
 	};
 	const onTouchMove = (e: any) => setTouchEnd(e.targetTouches[0].clientX);
 	const onTouchEnd = () => {
@@ -91,12 +94,6 @@ export default function QuranMain() {
 		}
 	};
 
-	// useEffect(() => {
-	// 	const url = quranJs.map(url => {
-	// 		return [url];
-	// 	});
-	// 	func(url);
-	// }, []);
 	const preloadImages = async (urls: any) => {
 		const images = [];
 		for (const url of urls) {
@@ -118,6 +115,14 @@ export default function QuranMain() {
 		const url = quranJs.map(url => {
 			return [url];
 		});
+
+		const screenWidth = window.screen.width;
+		if (screenWidth < 1280) {
+			setScreenValue(1);
+		} else {
+			setScreenValue(2);
+		}
+
 		preloadImages(url)
 			.then(images => setPreloadedImages(images))
 			.catch(error => console.error("Fehler beim Vorladen der Bilder:", error));
@@ -125,6 +130,12 @@ export default function QuranMain() {
 	useEffect(() => {
 		const handleKeyPress = (event: { key: string }) => {
 			if (typeof window !== "undefined" && preloadedImages.length > 0) {
+				const screenWidth = window.screen.width;
+				if (screenWidth < 1280) {
+					setScreenValue(1);
+				} else {
+					setScreenValue(2);
+				}
 				if (event.key === "ArrowLeft") {
 					Right();
 				} else if (event.key === "ArrowRight") {
@@ -165,17 +176,6 @@ export default function QuranMain() {
 		}
 	};
 
-	const handleNext = () => {
-		setCurrentIndex(prevIndex =>
-			prevIndex + 2 < quranJs.length ? prevIndex + 2 : 0,
-		);
-	};
-
-	const handlePrev = () => {
-		setCurrentIndex(prevIndex =>
-			prevIndex - 2 >= 0 ? prevIndex - 2 : quranJs.length - 2,
-		);
-	};
 	return (
 		<div className='flex flex-start '>
 			<article>
@@ -197,11 +197,11 @@ export default function QuranMain() {
 						onTouchMove={onTouchMove}
 						onTouchEnd={onTouchEnd}
 						className='flex flex-col  align-center justify-center'>
+						{/* desktop */}
 						<div
 							style={{ transform: `translateX(${transform}px)`, left: "0" }}
-							className={`${leftHidden} duration-300 mt-20 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center`}>
-							{/* Hier werden immer nur zwei Bilder angezeigt */}
-							{/* <div className='flex flex-col items-center'>
+							className={`${leftHidden} hidden duration-300 mt-20 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 xl:flex justify-center items-center`}>
+							<div className='flex flex-col items-center'>
 								<Image
 									src={preloadedImages[currentIndex + 1]?.src}
 									width={700}
@@ -225,95 +225,31 @@ export default function QuranMain() {
 								<ClaimDeedsRight
 									pageDeeds={preloadedImages[currentIndex]?.alt}
 								/>
-							</div> */}
-							<div className='image-gallery'>
-								<button onClick={handlePrev}>Previous</button>
-								<div className='gallery'>
-									{quranJs.map((image, index) => (
-										<div
-											key={index}
-											className={`image-container ${
-												index === currentIndex || index === currentIndex + 1
-													? "visible"
-													: "hidden"
-											}`}>
-											<img src={image.image1} alt={`Image ${index}`} />
-										</div>
-									))}
-								</div>
-								<button onClick={handleNext}>Next</button>
-								<style jsx>{`
-									.image-gallery {
-										display: flex;
-										flex-direction: column;
-										align-items: center;
-									}
-									.gallery {
-										display: flex;
-										overflow: hidden;
-									}
-									.image-container {
-										margin: 0 10px;
-										opacity: 0;
-										transition: opacity 0.5s ease;
-									}
-									.visible {
-										opacity: 1;
-									}
-									.hidden {
-										display: none;
-									}
-									.image-container img {
-										width: 200px;
-										height: auto;
-									}
-								`}</style>
 							</div>
-							{/* Buttons zum Wechseln der angezeigten Bilder */}
-
-							{/* {quranJs.map(page => {
-								if (currentPage % 2 == 0) {
-									setCurrentPage(currentPage - 1);
-								}
-								if (page.currentPage == currentPage) {
-									return (
-										<>
-											<div className=' '>
-												<Image
-													src={page.image2}
-													width={650}
-													height={940}
-													alt=''
-													loading='lazy'
-												/>
-
-												<div className='relative flex p-4 bg-white align-center justify-center gap-4'>
-													<ClaimDeedsLeft pageDeeds={page.hasanatPage2} />
-
-													<p
-														className={`${animation} ${hiddenFirst} absolute top-0 text-[green] text-3xl`}>{`+${page.hasanatPage2} Hasanat`}</p>
-												</div>
-											</div>
-											<div className=''>
-												<Image
-													src={page.image1}
-													width={650}
-													height={940}
-													alt=''
-													loading='lazy'
-												/>
-												<div className='relative flex p-4 bg-white align-center justify-center gap-4'>
-													<ClaimDeedsRight pageDeeds={page.hasanatPage1} />
-												</div>
-											</div>
-										</>
-									);
-								}
-							})} */}
 						</div>
+						{/* desktop */}
+
+						{/* Mobile */}
+						<div
+							style={{ transform: `translateX(${transform}px)`, left: "0" }}
+							className={`${leftHidden} xl:hidden duration-300 mt-20 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center`}>
+							<div className='flex flex-col items-center'>
+								<Image
+									src={preloadedImages[currentIndex]?.src}
+									width={700}
+									height={940}
+									alt={preloadedImages[currentIndex]?.alt}
+									loading='lazy'
+								/>
+								<ClaimDeedsLeft
+									pageDeeds={preloadedImages[currentIndex]?.alt}
+								/>
+							</div>
+						</div>
+						{/* Mobile */}
 					</div>
 					<div className='hidden lg:flex  flex-col align-center justify-center'>
-						<div onClick={Right} className='flex justify-center items-center'>
+						<div onClick={Left} className='flex justify-center items-center'>
 							<ButtonRight currentPage={{ currentPage, setCurrentPage }} />
 						</div>
 					</div>
