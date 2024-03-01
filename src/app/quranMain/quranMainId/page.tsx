@@ -82,29 +82,29 @@ export default function QuranMain() {
 		if (isLeftSwipe || isRightSwipe) isLeftSwipe ? Left() : Right();
 	};
 
-	const func = (url: any) => {
-		const images: any | ((prevState: never[]) => never[]) = [];
-		if (typeof window !== "undefined") {
-			url.forEach((url: any) => {
-				const img1 = new (window as any).Image();
-				const img2 = new (window as any).Image();
-				img1.src = url[0].image1;
-				img1.alt = url[0].hasanatPage1;
-				img2.src = url[0].image2;
-				img2.alt = url[0].hasanatPage2;
-				images.push(img1);
-				images.push(img2);
-			});
-			setPreloadedImages(images);
-		}
-	};
+	// const func = (url: any) => {
+	// 	const images: any | ((prevState: never[]) => never[]) = [];
+	// 	if (typeof window !== "undefined") {
+	// 		url.forEach((url: any) => {
+	// 			const img1 = new (window as any).Image();
+	// 			const img2 = new (window as any).Image();
+	// 			img1.src = url[0].image1;
+	// 			img1.alt = url[0].hasanatPage1;
+	// 			img2.src = url[0].image2;
+	// 			img2.alt = url[0].hasanatPage2;
+	// 			images.push(img1);
+	// 			images.push(img2);
+	// 		});
+	// 		setPreloadedImages(images);
+	// 	}
+	// };
 
-	useEffect(() => {
-		const url = quranJs.map(url => {
-			return [url];
-		});
-		func(url);
-	}, []);
+	// useEffect(() => {
+	// 	const url = quranJs.map(url => {
+	// 		return [url];
+	// 	});
+	// 	func(url);
+	// }, []);
 
 	useEffect(() => {
 		const handleKeyPress = (event: { key: string }) => {
@@ -150,6 +150,7 @@ export default function QuranMain() {
 	};
 	const [visibleIndex, setVisibleIndex] = useState(0);
 	const [allImages, setAllImages] = useState([]);
+
 	const preloadAllImages = async () => {
 		const images = [];
 		for (const url of quranJs) {
