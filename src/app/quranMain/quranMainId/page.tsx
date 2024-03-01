@@ -40,10 +40,12 @@ export default function QuranMain() {
 				currentIndex - 2 < 0 ? preloadedImages.length - 2 : currentIndex - 2,
 			);
 		}, 250);
-		setTimeout(() => {
-			setLeftHidden("");
-			setTransform(0);
-		}, 600);
+		if (preloadedImages[currentIndex]?.src) {
+			setTimeout(() => {
+				setLeftHidden("");
+				setTransform(0);
+			}, 600);
+		}
 	};
 
 	const Right = () => {
@@ -55,12 +57,13 @@ export default function QuranMain() {
 				currentIndex + 2 >= preloadedImages.length ? 0 : currentIndex + 2,
 			);
 		}, 250);
+		if (preloadedImages[currentIndex]?.src) {
+			setTimeout(() => {
+				setLeftHidden("");
 
-		setTimeout(() => {
-			setLeftHidden("");
-
-			setTransform(0);
-		}, 400);
+				setTransform(0);
+			}, 400);
+		}
 	};
 	const onTouchMove = (e: any) => setTouchEnd(e.targetTouches[0].clientX);
 	const onTouchEnd = () => {
@@ -117,18 +120,6 @@ export default function QuranMain() {
 
 		// Aufräumen, wenn die Komponente unmountet wird
 	}, [currentIndex, preloadedImages]);
-
-	const showNextImages = () => {
-		setCurrentIndex(
-			currentIndex + 2 >= preloadedImages.length ? 0 : currentIndex + 2,
-		);
-	};
-
-	const showPreviousImages = () => {
-		setCurrentIndex(
-			currentIndex - 2 < 0 ? preloadedImages.length - 2 : currentIndex - 2,
-		);
-	};
 
 	const handleSearchInputChange = (event: any) => {
 		setSearchInput(parseInt(event.target.value) - 1);
