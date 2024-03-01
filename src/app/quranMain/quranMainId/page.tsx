@@ -22,6 +22,7 @@ export default function QuranMain() {
 	const [preloadedImages, setPreloadedImages] = useState<HTMLImageElement[]>(
 		[],
 	);
+	const screenWidth = window.screen.width;
 	const [searchInput, setSearchInput] = useState(0);
 	const minSwipeDistance = 50;
 
@@ -116,7 +117,6 @@ export default function QuranMain() {
 			return [url];
 		});
 
-		const screenWidth = window.screen.width;
 		if (screenWidth < 1280) {
 			setScreenValue(1);
 		} else {
@@ -130,12 +130,6 @@ export default function QuranMain() {
 	useEffect(() => {
 		const handleKeyPress = (event: { key: string }) => {
 			if (typeof window !== "undefined" && preloadedImages.length > 0) {
-				const screenWidth = window.screen.width;
-				if (screenWidth < 1280) {
-					setScreenValue(1);
-				} else {
-					setScreenValue(2);
-				}
 				if (event.key === "ArrowLeft") {
 					Right();
 				} else if (event.key === "ArrowRight") {
@@ -167,10 +161,14 @@ export default function QuranMain() {
 			if (searchInput < 0) {
 				console.log("Bitte ab 1 Enngeben");
 			} else {
-				if (searchInput % 2 == 0) {
+				if (screenWidth < 1280) {
 					setCurrentIndex(searchInput);
 				} else {
-					setCurrentIndex(searchInput - 1);
+					if (searchInput % 2 == 0) {
+						setCurrentIndex(searchInput);
+					} else {
+						setCurrentIndex(searchInput - 1);
+					}
 				}
 			}
 		}
