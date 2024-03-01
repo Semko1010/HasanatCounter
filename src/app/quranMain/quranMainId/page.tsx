@@ -82,29 +82,29 @@ export default function QuranMain() {
 		if (isLeftSwipe || isRightSwipe) isLeftSwipe ? Left() : Right();
 	};
 
-	// const func = (url: any) => {
-	// 	const images: any | ((prevState: never[]) => never[]) = [];
-	// 	if (typeof window !== "undefined") {
-	// 		url.forEach((url: any) => {
-	// 			const img1 = new (window as any).Image();
-	// 			const img2 = new (window as any).Image();
-	// 			img1.src = url[0].image1;
-	// 			img1.alt = url[0].hasanatPage1;
-	// 			img2.src = url[0].image2;
-	// 			img2.alt = url[0].hasanatPage2;
-	// 			images.push(img1);
-	// 			images.push(img2);
-	// 		});
-	// 		setPreloadedImages(images);
-	// 	}
-	// };
+	const func = (url: any) => {
+		const images: any | ((prevState: never[]) => never[]) = [];
+		if (typeof window !== "undefined") {
+			url.forEach((url: any) => {
+				const img1 = new (window as any).Image();
+				const img2 = new (window as any).Image();
+				img1.src = url[0].image1;
+				img1.alt = url[0].hasanatPage1;
+				img2.src = url[0].image2;
+				img2.alt = url[0].hasanatPage2;
+				images.push(img1);
+				images.push(img2);
+			});
+			setPreloadedImages(images);
+		}
+	};
 
-	// useEffect(() => {
-	// 	const url = quranJs.map(url => {
-	// 		return [url];
-	// 	});
-	// 	func(url);
-	// }, []);
+	useEffect(() => {
+		const url = quranJs.map(url => {
+			return [url];
+		});
+		func(url);
+	}, []);
 
 	useEffect(() => {
 		const handleKeyPress = (event: { key: string }) => {
@@ -148,48 +148,7 @@ export default function QuranMain() {
 			}
 		}
 	};
-	const [visibleIndex, setVisibleIndex] = useState(0);
-	const [allImages, setAllImages] = useState([]);
 
-	const preloadAllImages = async () => {
-		const images: any = [];
-		for (const url of quranJs) {
-			const img1 = new (window as any).Image();
-			const img2 = new (window as any).Image();
-			img1.src = url.image1;
-			img1.alt = url.hasanatPage1;
-			img2.src = url.image2;
-			img2.alt = url.hasanatPage2;
-			await Promise.all([
-				new Promise((resolve, reject) => {
-					img1.onload = img1.onerror = resolve;
-					img1.onabort = reject;
-				}),
-				new Promise((resolve, reject) => {
-					img2.onload = img2.onerror = resolve;
-					img2.onabort = reject;
-				}),
-			]);
-			images.push({ img1, img2 });
-		}
-		setAllImages(images);
-	};
-	useEffect(() => {
-		preloadAllImages();
-	}, []);
-	const goForward = () => {
-		setVisibleIndex((visibleIndex + 1) % preloadedImages.length);
-	};
-
-	// Funktion zum Rückwärtsbewegen
-	const goBackward = () => {
-		setVisibleIndex(
-			(visibleIndex - 1 + preloadedImages.length) % preloadedImages.length,
-		);
-	};
-	const hiddenStyle = {
-		display: "none",
-	};
 	return (
 		<div className='flex flex-start '>
 			<article>
@@ -215,29 +174,7 @@ export default function QuranMain() {
 							style={{ transform: `translateX(${transform}px)`, left: "0" }}
 							className={`${leftHidden} duration-300 mt-20 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center`}>
 							{/* Hier werden immer nur zwei Bilder angezeigt */}
-
-							<div>
-								<div>
-									<button onClick={goBackward}>Zurück</button>
-									<button onClick={goForward}>Vorwärts</button>
-								</div>
-								<div>
-									{allImages.map((images, index) => (
-										<div
-											key={index}
-											style={
-												index === visibleIndex ||
-												index === (visibleIndex + 1) % allImages.length
-													? {}
-													: hiddenStyle
-											}>
-											<img src={images.img1.src} alt={images.img1.alt} />
-											<img src={images.img2.src} alt={images.img2.alt} />
-										</div>
-									))}
-								</div>
-							</div>
-							{/* <div className='flex flex-col items-center'>
+							<div className='flex flex-col items-center'>
 								<Image
 									src={preloadedImages[currentIndex + 1]?.src}
 									width={700}
@@ -261,7 +198,7 @@ export default function QuranMain() {
 								<ClaimDeedsRight
 									pageDeeds={preloadedImages[currentIndex]?.alt}
 								/>
-							</div> */}
+							</div>
 
 							{/* Buttons zum Wechseln der angezeigten Bilder */}
 
