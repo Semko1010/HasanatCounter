@@ -152,7 +152,7 @@ export default function QuranMain() {
 	const [allImages, setAllImages] = useState([]);
 
 	const preloadAllImages = async () => {
-		const images = [];
+		const images: any = [];
 		for (const url of quranJs) {
 			const img1 = new (window as any).Image();
 			const img2 = new (window as any).Image();
