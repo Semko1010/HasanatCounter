@@ -165,6 +165,17 @@ export default function QuranMain() {
 		}
 	};
 
+	const handleNext = () => {
+		setCurrentIndex(prevIndex =>
+			prevIndex + 2 < quranJs.length ? prevIndex + 2 : 0,
+		);
+	};
+
+	const handlePrev = () => {
+		setCurrentIndex(prevIndex =>
+			prevIndex - 2 >= 0 ? prevIndex - 2 : quranJs.length - 2,
+		);
+	};
 	return (
 		<div className='flex flex-start '>
 			<article>
@@ -190,7 +201,7 @@ export default function QuranMain() {
 							style={{ transform: `translateX(${transform}px)`, left: "0" }}
 							className={`${leftHidden} duration-300 mt-20 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center`}>
 							{/* Hier werden immer nur zwei Bilder angezeigt */}
-							<div className='flex flex-col items-center'>
+							{/* <div className='flex flex-col items-center'>
 								<Image
 									src={preloadedImages[currentIndex + 1]?.src}
 									width={700}
@@ -214,8 +225,50 @@ export default function QuranMain() {
 								<ClaimDeedsRight
 									pageDeeds={preloadedImages[currentIndex]?.alt}
 								/>
+							</div> */}
+							<div className='image-gallery'>
+								<button onClick={handlePrev}>Previous</button>
+								<div className='gallery'>
+									{quranJs.map((image, index) => (
+										<div
+											key={index}
+											className={`image-container ${
+												index === currentIndex || index === currentIndex + 1
+													? "visible"
+													: "hidden"
+											}`}>
+											<img src={image.image1} alt={`Image ${index}`} />
+										</div>
+									))}
+								</div>
+								<button onClick={handleNext}>Next</button>
+								<style jsx>{`
+									.image-gallery {
+										display: flex;
+										flex-direction: column;
+										align-items: center;
+									}
+									.gallery {
+										display: flex;
+										overflow: hidden;
+									}
+									.image-container {
+										margin: 0 10px;
+										opacity: 0;
+										transition: opacity 0.5s ease;
+									}
+									.visible {
+										opacity: 1;
+									}
+									.hidden {
+										display: none;
+									}
+									.image-container img {
+										width: 200px;
+										height: auto;
+									}
+								`}</style>
 							</div>
-
 							{/* Buttons zum Wechseln der angezeigten Bilder */}
 
 							{/* {quranJs.map(page => {
