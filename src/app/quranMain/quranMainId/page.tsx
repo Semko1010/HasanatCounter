@@ -33,7 +33,7 @@ export default function QuranMain() {
 
 	const Left = () => {
 		console.log(
-			"preloadedImages[currentIndex]?.src",
+			"Src",
 			preloadedImages[currentIndex]?.src,
 		);
 		setTransform(-750);
