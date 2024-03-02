@@ -19,7 +19,7 @@ export default function Login({ setLoggedUser }: Props) {
 	const userLogin = async () => {
 		const userInfos = await UserLoginController(userName, password);
 		setLoggedUser(userInfos); // Setzen Sie die Benutzerinformationen über die übergebene Funktion
-		console.log(userName, password, userInfos);
+		localStorage.setItem("loggedUser", JSON.stringify(userInfos));
 	};
 
 	return (

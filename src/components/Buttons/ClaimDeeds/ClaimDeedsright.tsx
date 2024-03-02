@@ -41,7 +41,20 @@ export default function ClaimDeeds(props: Deeds) {
 		setInput(!input);
 	};
 	return (
-		<>
+		<div className='absolute bottom-2'>
+			<div className='flex justify-center items-center gap-6'>
+				<label className='' htmlFor='input'>
+					{" "}
+					I read this page
+				</label>
+				<input
+					checked={input}
+					id='checkBox'
+					className='input'
+					onChange={changeState}
+					type='checkbox'
+				/>
+			</div>
 			{checkbox ? (
 				<>
 					<button
@@ -66,19 +79,6 @@ export default function ClaimDeeds(props: Deeds) {
 
 			<p
 				className={`animate-ping ${hidden} absolute bottom-24 text-[green] text-xl lg:text-3xl`}>{`+${props.pageDeeds} Hasanat`}</p>
-			<div className='flex flex-col'>
-				<label className='' htmlFor='input'>
-					{" "}
-					I read this page
-				</label>
-				<input
-					checked={input}
-					id='checkBox'
-					className='input'
-					onChange={changeState}
-					type='checkbox'
-				/>
-			</div>
-		</>
+		</div>
 	);
 }

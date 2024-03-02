@@ -54,10 +54,12 @@ export default function Deeds({ loggedUser }: Props) {
 	}, [db, loggedUser]);
 
 	return (
-		<div className='bg-white z-10 fixed top-0 h-[30px] rounded-lg text-[18px] flex items-center gap-4 border-2 py-6 px-2 m-4'>
-			<p>My Hasanat:</p>
-			<p className='text-green-500 text-[28px]'>{myHasanat}</p>
-			{/* <img className='w-12' src='/images/level/bronze.png' alt='' /> */}
+		<div className='bg-gradient-to-r from-green-400 to-blue-300 text-white fixed top-4  z-10 rounded-xl py-3 px-6 flex items-center gap-4 shadow-lg'>
+			<img className='w-[50px]' src='images/icons/deeds.png' alt='' />
+			<div className='flex flex-col'>
+				<p className='text-base xl:text-lg font-bold'>My Hasanat</p>
+				<p className='text-lg xl:text-3xl font-bold'>{myHasanat}</p>
+			</div>
 		</div>
 	);
 }

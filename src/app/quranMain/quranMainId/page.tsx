@@ -78,23 +78,6 @@ export default function QuranMain() {
 		if (isLeftSwipe || isRightSwipe) isLeftSwipe ? Left() : Right();
 	};
 
-	const func = (url: any) => {
-		const images: any | ((prevState: never[]) => never[]) = [];
-		if (typeof window !== "undefined") {
-			url.forEach((url: any) => {
-				const img1 = new (window as any).Image();
-				const img2 = new (window as any).Image();
-				img1.src = url[0].image1;
-				img1.alt = url[0].hasanatPage1;
-				img2.src = url[0].image2;
-				img2.alt = url[0].hasanatPage2;
-				images.push(img1);
-				images.push(img2);
-			});
-			setPreloadedImages(images);
-		}
-	};
-
 	const preloadImages = async (urls: any) => {
 		const images = [];
 		for (const url of urls) {
@@ -198,7 +181,7 @@ export default function QuranMain() {
 						{/* desktop */}
 						<div
 							style={{ transform: `translateX(${transform}px)`, left: "0" }}
-							className={`${leftHidden} hidden duration-300 mt-20 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 xl:flex justify-center items-center`}>
+							className={`${leftHidden} hidden duration-300 mt-32 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 border-green-300 outline outline-offset-2 outline-green-500 xl:flex justify-center items-center`}>
 							<div className='flex flex-col items-center'>
 								<Image
 									src={preloadedImages[currentIndex + 1]?.src}
@@ -212,7 +195,7 @@ export default function QuranMain() {
 								/>
 							</div>
 
-							<div className='flex flex-col items-center'>
+							<div className='relative flex flex-col items-center'>
 								<Image
 									src={preloadedImages[currentIndex]?.src}
 									width={700}
@@ -231,7 +214,7 @@ export default function QuranMain() {
 						<div
 							style={{ transform: `translateX(${transform}px)`, left: "0" }}
 							className={`${leftHidden} xl:hidden duration-300 mt-20 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center`}>
-							<div className='flex flex-col items-center'>
+							<div className='relative flex flex-col items-center'>
 								<Image
 									src={preloadedImages[currentIndex]?.src}
 									width={700}
