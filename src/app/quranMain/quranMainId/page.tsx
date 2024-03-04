@@ -183,9 +183,33 @@ export default function QuranMain() {
 						onTouchStart={onTouchStart}
 						onTouchMove={onTouchMove}
 						onTouchEnd={onTouchEnd}
-						className='flex flex-col  align-center justify-center'>
+						className='flex flex-col align-center justify-center'>
 						{/* desktop */}
-						<div
+						<div className='mt-32 image-gallery'>
+							<div className='flex-row-reverse flex'>
+								{preloadedImages.map((image, index) => (
+									<div
+										key={index}
+										className={`image-container ${
+											index === currentIndex || index === currentIndex + 1
+												? "visible"
+												: "hidden"
+										}`}>
+										<Image
+											src={image.src}
+											width={700}
+											height={940}
+											alt={image.alt}
+											loading='lazy'
+										/>
+										<ClaimDeedsLeft pageDeeds={image.alt} />
+									</div>
+								))}
+							</div>
+
+							<style jsx>{``}</style>
+						</div>
+						{/* <div
 							style={{ transform: `translateX(${transform}px)`, left: "0" }}
 							className={`${leftHidden} hidden duration-300 mt-32 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 border-green-300 outline outline-offset-2 outline-green-500 xl:flex justify-center items-center`}>
 							<div className='flex flex-col items-center'>
@@ -213,7 +237,7 @@ export default function QuranMain() {
 									pageDeeds={preloadedImages[currentIndex]?.alt}
 								/>
 							</div>
-						</div>
+						</div> */}
 						{/* desktop */}
 
 						{/* Mobile */}
