@@ -162,7 +162,36 @@ export default function QuranMain() {
 			}
 		}
 	};
+	const [prevImages, setPrevImages] = useState([]);
+	const [nextImages, setNextImages] = useState([]);
+	const preloadAdjacentImages = async () => {
+		// Stellen Sie sicher, dass currentIndex gültig ist
+		if (currentIndex < 0 || currentIndex >= preloadedImages.length) return;
 
+		// Index der vorherigen und nächsten Bilder berechnen
+		const prevIndex =
+			(currentIndex - 2 + preloadedImages.length) % preloadedImages.length;
+		const nextIndex = (currentIndex + 2) % preloadedImages.length;
+
+		// Vorherige Bilder vorladen
+		const prevUrls = [
+			preloadedImages[prevIndex],
+			preloadedImages[(prevIndex + 1) % preloadedImages.length],
+		];
+		const prevLoadedImages = await preloadImages(prevUrls);
+		setPrevImages(prevLoadedImages);
+
+		// Nächste Bilder vorladen
+		const nextUrls = [
+			preloadedImages[nextIndex],
+			preloadedImages[(nextIndex + 1) % preloadedImages.length],
+		];
+		const nextLoadedImages = await preloadImages(nextUrls);
+		setNextImages(nextLoadedImages);
+	};
+	useEffect(() => {
+		preloadAdjacentImages();
+	}, [currentIndex]);
 	return (
 		<div className='flex flex-start '>
 			<article>
@@ -173,121 +202,73 @@ export default function QuranMain() {
 			</article>
 			<main className=' flex justify-center '>
 				<div className='flex gap-4'>
-					<div className='hidden lg:flex flex-col align-center justify-center'>
-						<div onClick={Right} className='flex justify-center items-center'>
-							<ButtonLeft currentPage={{ currentPage, setCurrentPage }} />
-							{/* <button >Vor</button> */}
+					{/* Vorherige Bilder rendern */}
+					{prevImages.map((image, index) => (
+						<div
+							key={index}
+							className={`${
+								index === currentIndex || index === currentIndex - 1
+									? "visible flex justify-center "
+									: "hidden"
+							}`}>
+							<Image
+								src={image.src}
+								width={700}
+								height={940}
+								alt={image.alt}
+								loading='lazy'
+							/>
+							<ClaimDeedsLeft pageDeeds={image.alt} />
 						</div>
-					</div>
+					))}
+
 					<div
 						onTouchStart={onTouchStart}
 						onTouchMove={onTouchMove}
 						onTouchEnd={onTouchEnd}
 						className='flex flex-col align-center justify-center'>
-						{/* desktop */}
-						<div
-							style={{ transform: `translateX(${transform}px)`, left: "0" }}
-							className={`${leftHidden} hidden xl:flex duration-300 mt-20 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center`}>
-							<div className=' flex flex-col xl:flex-row-reverse'>
-								{preloadedImages.map((image, index) => (
-									<div
-										key={index}
-										className={` ${
-											index === currentIndex || index === currentIndex + 1
-												? "visible flex justify-center "
-												: "hidden"
-										}`}>
-										<Image
-											src={image.src}
-											width={700}
-											height={940}
-											alt={image.alt}
-											loading='lazy'
-										/>
-										<ClaimDeedsLeft pageDeeds={image.alt} />
-									</div>
-								))}
-							</div>
-						</div>
-						{/* <div
-							style={{ transform: `translateX(${transform}px)`, left: "0" }}
-							className={`${leftHidden} hidden duration-300 mt-32 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 border-green-300 outline outline-offset-2 outline-green-500 xl:flex justify-center items-center`}>
-							<div className='flex flex-col items-center'>
+						{/* Aktuelles Bild anzeigen */}
+						{preloadedImages.map((image, index) => (
+							<div
+								key={index}
+								className={` ${
+									index === currentIndex || index === currentIndex + 1
+										? "visible flex justify-center "
+										: "hidden"
+								}`}>
 								<Image
-									src={preloadedImages[currentIndex + 1]?.src}
+									src={image.src}
 									width={700}
 									height={940}
-									alt={preloadedImages[currentIndex + 1]?.alt}
+									alt={image.alt}
 									loading='lazy'
 								/>
-								<ClaimDeedsLeft
-									pageDeeds={preloadedImages[currentIndex + 1]?.alt}
-								/>
+								<ClaimDeedsLeft pageDeeds={image.alt} />
 							</div>
+						))}
 
-							<div className='relative flex flex-col items-center'>
+						{/* Nächste Bilder rendern */}
+						{nextImages.map((image, index) => (
+							<div
+								key={index}
+								className={`${
+									index === currentIndex || index === currentIndex + 1
+										? "visible flex justify-center "
+										: "hidden"
+								}`}>
 								<Image
-									src={preloadedImages[currentIndex]?.src}
+									src={image.src}
 									width={700}
 									height={940}
-									alt={preloadedImages[currentIndex]?.alt}
+									alt={image.alt}
 									loading='lazy'
 								/>
-								<ClaimDeedsRight
-									pageDeeds={preloadedImages[currentIndex]?.alt}
-								/>
+								<ClaimDeedsLeft pageDeeds={image.alt} />
 							</div>
-						</div> */}
-						{/* desktop */}
+						))}
+					</div>
 
-						{/* Mobile */}
-						<div
-							style={{ transform: `translateX(${transform}px)`, left: "0" }}
-							className={`${leftHidden} xl:hidden duration-300 mt-28 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center`}>
-							<div className='justify-center flex flex-col xl:flex-row-reverse'>
-								{preloadedImages.map((image, index) => (
-									<div
-										key={index}
-										className={` ${
-											index === currentIndex
-												? "visible flex justify-center"
-												: "hidden"
-										}`}>
-										<Image
-											src={image.src}
-											width={340}
-											height={640}
-											alt={image.alt}
-											loading='lazy'
-										/>
-										<ClaimDeedsLeft pageDeeds={image.alt} />
-									</div>
-								))}
-							</div>
-						</div>
-						{/* <div
-							style={{ transform: `translateX(${transform}px)`, left: "0" }}
-							className={`${leftHidden} xl:hidden duration-300 mt-20 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center`}>
-							<div className='relative flex flex-col items-center'>
-								<Image
-									src={preloadedImages[currentIndex]?.src}
-									width={700}
-									height={940}
-									alt={preloadedImages[currentIndex]?.alt}
-									loading='lazy'
-								/>
-								<ClaimDeedsLeft
-									pageDeeds={preloadedImages[currentIndex]?.alt}
-								/>
-							</div>
-						</div> */}
-						{/* Mobile */}
-					</div>
-					<div className='hidden lg:flex  flex-col align-center justify-center'>
-						<div onClick={Left} className='flex justify-center items-center'>
-							<ButtonRight currentPage={{ currentPage, setCurrentPage }} />
-						</div>
-					</div>
+					{/* Andere Teile Ihrer Komponente */}
 				</div>
 			</main>
 		</div>
