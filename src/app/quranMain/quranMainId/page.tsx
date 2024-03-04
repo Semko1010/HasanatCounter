@@ -23,7 +23,6 @@ export default function QuranMain() {
 		[],
 	);
 
-	const screenWidth = window.screen.width;
 	const [searchInput, setSearchInput] = useState(0);
 	const minSwipeDistance = 50;
 
@@ -101,10 +100,13 @@ export default function QuranMain() {
 			return [url];
 		});
 
-		if (screenWidth < 1280) {
-			setScreenValue(1);
-		} else {
-			setScreenValue(2);
+		if (typeof window !== "undefined") {
+			const screenWidth = window.screen.width;
+			if (screenWidth < 1280) {
+				setScreenValue(1);
+			} else {
+				setScreenValue(2);
+			}
 		}
 
 		preloadImages(url)
@@ -145,13 +147,16 @@ export default function QuranMain() {
 			if (searchInput < 0) {
 				console.log("Bitte ab 1 Enngeben");
 			} else {
-				if (screenWidth < 1280) {
-					setCurrentIndex(searchInput);
-				} else {
-					if (searchInput % 2 == 0) {
+				if (typeof window !== "undefined") {
+					const screenWidth = window.screen.width;
+					if (screenWidth < 1280) {
 						setCurrentIndex(searchInput);
 					} else {
-						setCurrentIndex(searchInput - 1);
+						if (searchInput % 2 == 0) {
+							setCurrentIndex(searchInput);
+						} else {
+							setCurrentIndex(searchInput - 1);
+						}
 					}
 				}
 			}
