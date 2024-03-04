@@ -1,6 +1,6 @@
 "use client";
 
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 
 import ButtonRight from "../../../components/Buttons/buttonRight";
 import ButtonLeft from "../../../components/Buttons/buttonLeft";
@@ -162,7 +162,15 @@ export default function QuranMain() {
 			}
 		}
 	};
-
+	const galleryRef = useRef(null);
+	const scrollToNext = () => {
+		if (galleryRef.current) {
+			galleryRef.current.scrollBy({
+				left: galleryRef.current.offsetWidth, // Breite von einem Bild
+				behavior: "smooth", // Scrollen mit Animation
+			});
+		}
+	};
 	return (
 		<div className='flex flex-start '>
 			<article>
@@ -179,24 +187,73 @@ export default function QuranMain() {
 							{/* <button >Vor</button> */}
 						</div>
 					</div>
+					<button className='scroll-button' onClick={scrollToNext}>
+						NextNextNext
+					</button>
 					<div
 						onTouchStart={onTouchStart}
 						onTouchMove={onTouchMove}
 						onTouchEnd={onTouchEnd}
 						className='flex flex-col align-center justify-center'>
 						{/* desktop */}
-						<div
+						<div className='image-gallery-container' ref={galleryRef}>
+							<div className='flex flex-col xl:inline image-gallery'>
+								{preloadedImages.map((image, index) => (
+									<div key={index} className='image-wrapper'>
+										<div className='image-container w-[100%]'>
+											<Image
+												src={image.src}
+												width={700}
+												height={940}
+												alt={image.alt}
+												loading='lazy'
+											/>
+											<ClaimDeedsLeft pageDeeds={image.alt} />
+										</div>
+									</div>
+								))}
+							</div>
+							<button className='scroll-button' onClick={scrollToNext}>
+								Next
+							</button>
+							<style jsx>{`
+								.image-gallery-container {
+									overflow-x: hidden;
+									white-space: nowrap;
+								}
+								.image-gallery {
+									width: auto;
+									direction: ltr; /* Richtung von links nach rechts für die Bilder */
+								}
+								.image-wrapper {
+									display: inline-block;
+									margin-left: 20px; /* Ändere den Margin, um den Abstand zwischen den Bildern zu setzen */
+									vertical-align: top;
+								}
+								.image-container {
+									position: relative;
+									margin-bottom: 10px;
+								}
+								.image-container img {
+									max-height: 300px;
+									max-width: 100%;
+									display: block;
+								}
+								.image-button {
+									display: block;
+									margin-top: 5px;
+								}
+								.scroll-button {
+									margin-top: 10px;
+								}
+							`}</style>
+						</div>
+						{/* <div
 							style={{ transform: `translateX(${transform}px)`, left: "0" }}
 							className={`${leftHidden} hidden xl:flex duration-300 mt-20 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center`}>
 							<div className=' flex flex-col xl:flex-row-reverse'>
 								{preloadedImages.map((image, index) => (
-									<div
-										key={index}
-										className={` ${
-											index === currentIndex || index === currentIndex + 1
-												? "visible flex justify-center"
-												: "hidden"
-										}`}>
+									<div key={index}>
 										<Image
 											src={image.src}
 											width={700}
@@ -208,7 +265,7 @@ export default function QuranMain() {
 									</div>
 								))}
 							</div>
-						</div>
+						</div> */}
 						{/* <div
 							style={{ transform: `translateX(${transform}px)`, left: "0" }}
 							className={`${leftHidden} hidden duration-300 mt-32 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 border-green-300 outline outline-offset-2 outline-green-500 xl:flex justify-center items-center`}>
