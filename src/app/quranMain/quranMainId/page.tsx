@@ -162,13 +162,11 @@ export default function QuranMain() {
 			}
 		}
 	};
-	const galleryRef = useRef(null);
+	const galleryRef = useRef<HTMLDivElement>(null);
 	const scrollToNext = () => {
 		if (galleryRef.current) {
-			galleryRef.current.scrollBy({
-				left: galleryRef.current.offsetWidth, // Breite von einem Bild
-				behavior: "smooth", // Scrollen mit Animation
-			});
+			(galleryRef.current as HTMLDivElement).scrollLeft +=
+				galleryRef.current.offsetWidth; // Scrolls by one image width
 		}
 	};
 	return (
@@ -298,7 +296,7 @@ export default function QuranMain() {
 						{/* desktop */}
 
 						{/* Mobile */}
-						<div
+						{/* <div
 							style={{ transform: `translateX(${transform}px)`, left: "0" }}
 							className={`${leftHidden} xl:hidden duration-300 mt-28 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center`}>
 							<div className='justify-center flex flex-col xl:flex-row-reverse'>
@@ -321,7 +319,7 @@ export default function QuranMain() {
 									</div>
 								))}
 							</div>
-						</div>
+						</div> */}
 						{/* <div
 							style={{ transform: `translateX(${transform}px)`, left: "0" }}
 							className={`${leftHidden} xl:hidden duration-300 mt-20 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center`}>
