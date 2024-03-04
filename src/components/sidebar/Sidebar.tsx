@@ -19,8 +19,13 @@ export default function Siderbar(props: SidebarProps) {
 	const [show, setShow] = useState(false);
 	const [search, setSearch] = useState<number>(2);
 	function logOut() {
-		localStorage.removeItem("loggedUser");
-		window.location.reload();
+		if (typeof localStorage !== "undefined") {
+			localStorage.removeItem("loggedUser");
+		}
+
+		if (typeof window !== "undefined") {
+			window.location.reload();
+		}
 	}
 
 	return (

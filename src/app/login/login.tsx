@@ -19,7 +19,9 @@ export default function Login({ setLoggedUser }: Props) {
 	const userLogin = async () => {
 		const userInfos = await UserLoginController(userName, password);
 		setLoggedUser(userInfos);
-		localStorage.setItem("loggedUser", JSON.stringify(userInfos));
+		if (typeof localStorage !== "undefined") {
+			localStorage.setItem("loggedUser", JSON.stringify(userInfos));
+		}
 	};
 
 	return (
