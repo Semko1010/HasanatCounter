@@ -9,7 +9,11 @@ import ClaimDeedsLeft from "../../../components/Buttons/ClaimDeeds/ClaimDeedsLef
 import quranJs from "../../../api/quranJs.json";
 import Sidebar from "../../../components/sidebar/Sidebar";
 import Image from "next/image";
-
+interface ImageData {
+	src: string;
+	alt: string;
+	// Weitere Eigenschaften je nach Bedarf hinzufügen
+}
 export default function QuranMain() {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [screenValue, setScreenValue] = useState(1);
@@ -162,8 +166,8 @@ export default function QuranMain() {
 			}
 		}
 	};
-	const [prevImages, setPrevImages] = useState([]);
-	const [nextImages, setNextImages] = useState([]);
+	const [prevImages, setPrevImages] = useState<ImageData[]>([]);
+	const [nextImages, setNextImages] = useState<ImageData[]>([]);
 	const preloadAdjacentImages = async () => {
 		// Stellen Sie sicher, dass currentIndex gültig ist
 		if (currentIndex < 0 || currentIndex >= preloadedImages.length) return;
