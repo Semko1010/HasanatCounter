@@ -22,6 +22,7 @@ export default function QuranMain() {
 	const [preloadedImages, setPreloadedImages] = useState<HTMLImageElement[]>(
 		[],
 	);
+
 	const screenWidth = window.screen.width;
 	const [searchInput, setSearchInput] = useState(0);
 	const minSwipeDistance = 50;
