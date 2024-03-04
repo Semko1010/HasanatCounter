@@ -42,7 +42,7 @@ export default function HasanatList() {
 			<h2 className='text-3xl text-center mb-6'>Rangliste</h2>
 			{hasanatListAll.length > 0 ? (
 				hasanatListAll.map((item, index) => (
-					<div className='container mx-auto p-4'>
+					<div key={index} className='container mx-auto p-4'>
 						<p className=' bg-white shadow-md p-4 rounded-md'>
 							Name: {item.username}
 						</p>
