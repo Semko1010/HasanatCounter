@@ -185,14 +185,16 @@ export default function QuranMain() {
 						onTouchEnd={onTouchEnd}
 						className='flex flex-col align-center justify-center'>
 						{/* desktop */}
-						<div className='mt-32 image-gallery'>
-							<div className='flex-row-reverse flex'>
+						<div
+							style={{ transform: `translateX(${transform}px)`, left: "0" }}
+							className={`${leftHidden} hidden xl:flex duration-300 mt-20 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center`}>
+							<div className=' flex flex-col xl:flex-row-reverse'>
 								{preloadedImages.map((image, index) => (
 									<div
 										key={index}
-										className={`image-container ${
+										className={` ${
 											index === currentIndex || index === currentIndex + 1
-												? "visible"
+												? "visible flex justify-center"
 												: "hidden"
 										}`}>
 										<Image
@@ -206,8 +208,6 @@ export default function QuranMain() {
 									</div>
 								))}
 							</div>
-
-							<style jsx>{``}</style>
 						</div>
 						{/* <div
 							style={{ transform: `translateX(${transform}px)`, left: "0" }}
@@ -243,6 +243,30 @@ export default function QuranMain() {
 						{/* Mobile */}
 						<div
 							style={{ transform: `translateX(${transform}px)`, left: "0" }}
+							className={`${leftHidden} xl:hidden duration-300 mt-28 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center`}>
+							<div className='justify-center flex flex-col xl:flex-row-reverse'>
+								{preloadedImages.map((image, index) => (
+									<div
+										key={index}
+										className={` ${
+											index === currentIndex
+												? "visible flex justify-center"
+												: "hidden"
+										}`}>
+										<Image
+											src={image.src}
+											width={700}
+											height={940}
+											alt={image.alt}
+											loading='lazy'
+										/>
+										<ClaimDeedsLeft pageDeeds={image.alt} />
+									</div>
+								))}
+							</div>
+						</div>
+						{/* <div
+							style={{ transform: `translateX(${transform}px)`, left: "0" }}
 							className={`${leftHidden} xl:hidden duration-300 mt-20 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center`}>
 							<div className='relative flex flex-col items-center'>
 								<Image
@@ -256,7 +280,7 @@ export default function QuranMain() {
 									pageDeeds={preloadedImages[currentIndex]?.alt}
 								/>
 							</div>
-						</div>
+						</div> */}
 						{/* Mobile */}
 					</div>
 					<div className='hidden lg:flex  flex-col align-center justify-center'>
