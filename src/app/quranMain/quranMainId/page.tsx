@@ -9,17 +9,14 @@ import ClaimDeedsLeft from "../../../components/Buttons/ClaimDeeds/ClaimDeedsLef
 import quranJs from "../../../api/quranJs.json";
 import Sidebar from "../../../components/sidebar/Sidebar";
 import Image from "next/image";
-interface ImageData {
-	src: string;
-	alt: string;
-	// Weitere Eigenschaften je nach Bedarf hinzufügen
-}
+
 export default function QuranMain() {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [screenValue, setScreenValue] = useState(1);
 
 	const [touchStart, setTouchStart] = useState(null);
 	const [touchEnd, setTouchEnd] = useState(null);
+
 	const [transform, setTransform] = useState(0);
 	const [leftHidden, setLeftHidden] = useState("");
 	const [currentIndex, setCurrentIndex] = useState(0);
@@ -87,6 +84,7 @@ export default function QuranMain() {
 		for (const url of urls) {
 			const img1 = new (window as any).Image();
 			const img2 = new (window as any).Image();
+
 			img1.src = url[0].image1;
 			img1.alt = url[0].hasanatPage1;
 			img2.src = url[0].image2;
@@ -166,36 +164,7 @@ export default function QuranMain() {
 			}
 		}
 	};
-	const [prevImages, setPrevImages] = useState<ImageData[]>([]);
-	const [nextImages, setNextImages] = useState<ImageData[]>([]);
-	const preloadAdjacentImages = async () => {
-		// Stellen Sie sicher, dass currentIndex gültig ist
-		if (currentIndex < 0 || currentIndex >= preloadedImages.length) return;
 
-		// Index der vorherigen und nächsten Bilder berechnen
-		const prevIndex =
-			(currentIndex - 2 + preloadedImages.length) % preloadedImages.length;
-		const nextIndex = (currentIndex + 2) % preloadedImages.length;
-
-		// Vorherige Bilder vorladen
-		const prevUrls = [
-			preloadedImages[prevIndex],
-			preloadedImages[(prevIndex + 1) % preloadedImages.length],
-		];
-		const prevLoadedImages = await preloadImages(prevUrls);
-		setPrevImages(prevLoadedImages);
-
-		// Nächste Bilder vorladen
-		const nextUrls = [
-			preloadedImages[nextIndex],
-			preloadedImages[(nextIndex + 1) % preloadedImages.length],
-		];
-		const nextLoadedImages = await preloadImages(nextUrls);
-		setNextImages(nextLoadedImages);
-	};
-	useEffect(() => {
-		preloadAdjacentImages();
-	}, [currentIndex]);
 	return (
 		<div className='flex flex-start '>
 			<article>
@@ -206,73 +175,93 @@ export default function QuranMain() {
 			</article>
 			<main className=' flex justify-center '>
 				<div className='flex gap-4'>
-					{/* Vorherige Bilder rendern */}
-					{prevImages.map((image, index) => (
-						<div
-							key={index}
-							className={`${
-								index === currentIndex || index === currentIndex - 1
-									? "visible flex justify-center "
-									: "hidden"
-							}`}>
-							<Image
-								src={image.src}
-								width={700}
-								height={940}
-								alt={image.alt}
-								loading='lazy'
-							/>
-							<ClaimDeedsLeft pageDeeds={image.alt} />
+					<div className='hidden lg:flex flex-col align-center justify-center'>
+						<div onClick={Right} className='flex justify-center items-center'>
+							<ButtonLeft currentPage={{ currentPage, setCurrentPage }} />
+							{/* <button >Vor</button> */}
 						</div>
-					))}
-
+					</div>
 					<div
 						onTouchStart={onTouchStart}
 						onTouchMove={onTouchMove}
 						onTouchEnd={onTouchEnd}
 						className='flex flex-col align-center justify-center'>
-						{/* Aktuelles Bild anzeigen */}
-						{preloadedImages.map((image, index) => (
-							<div
-								key={index}
-								className={` ${
-									index === currentIndex || index === currentIndex + 1
-										? "visible flex justify-center "
-										: "hidden"
-								}`}>
-								<Image
-									src={image.src}
-									width={700}
-									height={940}
-									alt={image.alt}
-									loading='lazy'
-								/>
-								<ClaimDeedsLeft pageDeeds={image.alt} />
+						{/* desktop */}
+						<div
+							style={{ transform: `translateX(${transform}px)`, left: "0" }}
+							className={`${leftHidden} hidden xl:flex duration-300 mt-28 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center`}>
+							<div className=' flex flex-col xl:flex-row-reverse'>
+								{preloadedImages.map((image, index) => (
+									<div
+										key={index}
+										className={` ${
+											index === currentIndex || index === currentIndex + 1
+												? "visible flex justify-center relative"
+												: "hidden"
+										}`}>
+										{index === currentIndex ? (
+											<>
+												<Image
+													src={image.src}
+													width={700}
+													height={940}
+													alt={image.alt}
+													loading='lazy'
+												/>
+												<ClaimDeedsLeft pageDeeds={image.alt} />
+											</>
+										) : (
+											<>
+												<Image
+													src={image.src}
+													width={700}
+													height={940}
+													alt={image.alt}
+													loading='lazy'
+												/>
+												<ClaimDeedsRight pageDeeds={image.alt} />
+											</>
+										)}
+									</div>
+								))}
 							</div>
-						))}
+						</div>
 
-						{/* Nächste Bilder rendern */}
-						{nextImages.map((image, index) => (
-							<div
-								key={index}
-								className={`${
-									index === currentIndex || index === currentIndex + 1
-										? "visible flex justify-center "
-										: "hidden"
-								}`}>
-								<Image
-									src={image.src}
-									width={700}
-									height={940}
-									alt={image.alt}
-									loading='lazy'
-								/>
-								<ClaimDeedsLeft pageDeeds={image.alt} />
+						{/* desktop */}
+
+						{/* Mobile */}
+						<div
+							style={{ transform: `translateX(${transform}px)`, left: "0" }}
+							className={`${leftHidden} xl:hidden duration-300 mt-28 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center`}>
+							<div className='justify-center flex flex-col xl:flex-row-reverse'>
+								{preloadedImages.map((image, index) => (
+									<div
+										key={index}
+										className={` ${
+											index === currentIndex
+												? "visible flex justify-center"
+												: "hidden"
+										}`}>
+										<Image
+											src={image.src}
+											width={370}
+											height={640}
+											alt={image.alt}
+											loading='lazy'
+										/>
+										<ClaimDeedsLeft pageDeeds={image.alt} />
+									</div>
+								))}
 							</div>
-						))}
+						</div>
+
+						{/* Mobile */}
 					</div>
-
-					{/* Andere Teile Ihrer Komponente */}
+					<div className='hidden lg:flex  flex-col align-center justify-center'>
+						<div onClick={Left} className='flex justify-center items-center'>
+							<ButtonRight currentPage={{ currentPage, setCurrentPage }} />
+						</div>
+					</div>
 				</div>
 			</main>
 		</div>

@@ -5,9 +5,11 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../api/firebase/firebase";
 
 interface UserData {
-	password: string;
 	username: string;
+	password: string;
+	email: string;
 	hasanat: number;
+
 	// Weitere Felder entsprechend der Struktur deiner Benutzerdaten
 }
 
@@ -38,22 +40,54 @@ export default function HasanatList() {
 	}, []);
 
 	return (
-		<div>
-			<h2 className='text-3xl text-center mb-6'>Rangliste</h2>
-			{hasanatListAll.length > 0 ? (
-				hasanatListAll.map((item, index) => (
-					<div key={index} className='container mx-auto p-4'>
-						<p className=' bg-white shadow-md p-4 rounded-md'>
-							Name: {item.username}
-						</p>
-						<p className='w-[50%] bg-white shadow-md p-4 rounded-md'>
-							Hasanat: {item.hasanat}
-						</p>
-					</div>
-				))
-			) : (
-				<p>Es wurden keine Daten gefunden.</p>
-			)}
+		<div className='bg-gradient-to-r from-green-400 to-blue-300 py-12'>
+			<div className='max-w-4xl mx-auto px-4'>
+				<div className='flex items-center gap-4 justify-center mb-10'>
+					<img
+						className='w-[70px] h-auto'
+						src='images/icons/quran4.png
+					'
+						alt=''
+					/>
+					<h2 className='text-3xl text-center text-white font-bold'>
+						Rangliste
+					</h2>
+					<img
+						className='w-[70px] h-auto'
+						src='images/icons/quran1.png
+					'
+						alt=''
+					/>
+				</div>
+
+				{hasanatListAll.length > 0 ? (
+					hasanatListAll.map((item, index) => (
+						<div key={index} className='bg-white rounded-lg shadow-md mb-4'>
+							<div className='px-6 py-4'>
+								<p className='text-lg text-gray-800 font-semibold'>
+									Name: {item.username}
+								</p>
+								<p className='text-lg text-gray-800 font-semibold mt-2'>
+									Hasanat: {item.hasanat}
+								</p>
+							</div>
+						</div>
+					))
+				) : (
+					<p className='text-white text-center'>
+						Es wurden keine Daten gefunden.
+					</p>
+				)}
+			</div>
+			<svg
+				className='absolute bottom-0 left-0'
+				xmlns='http://www.w3.org/2000/svg'
+				viewBox='0 0 1440 320'>
+				<path
+					fill='#ffffff'
+					fill-opacity='1'
+					d='M0,160L1440,288L1440,320L0,320Z'></path>
+			</svg>
 		</div>
 	);
 }

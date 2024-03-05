@@ -13,6 +13,7 @@ interface UserData {
 	hasanat: number;
 	username: string;
 	password: string;
+	email: string;
 }
 
 interface Props {
@@ -27,16 +28,20 @@ export default function Deeds({ loggedUser }: Props) {
 	useEffect(() => {
 		const getUserData = async () => {
 			if (loggedUser) {
-				const userDocRef = doc(db, "login", loggedUser.username);
+				const userDocRef = doc(db, "login", loggedUser.email);
 				const unsubscribe = onSnapshot(userDocRef, docSnap => {
 					if (docSnap.exists()) {
 						const userData = docSnap.data();
-						if (docSnap.data().hasanat >= 1000) {
+						if (docSnap.data().hasanat >= 1000000) {
+							const formattedNumber =
+								(docSnap.data().hasanat / 1000000).toFixed(3) + " M";
+							setHasanat(formattedNumber);
+							return formattedNumber;
+						} else if (docSnap.data().hasanat >= 1000) {
 							const formattedNumber =
 								(docSnap.data().hasanat / 1000).toFixed(1) + "K";
 							setHasanat(formattedNumber);
 							return formattedNumber;
-						} else {
 						}
 					} else {
 						console.log("Benutzerdokument nicht gefunden.");

@@ -11,6 +11,7 @@ interface UserData {
 	hasanat: number;
 	username: string;
 	password: string;
+	email: string;
 }
 export default function Home() {
 	const [loggedUser, setLoggedUser] = useState<UserData | null>(null);
@@ -27,6 +28,7 @@ export default function Home() {
 			}
 		}
 	}, []);
+
 	return (
 		<main className='bg-[#F8F8FF] flex flex-col justify-center items-center'>
 			{loggedUser == null ? (
