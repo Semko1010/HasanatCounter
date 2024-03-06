@@ -169,6 +169,7 @@ export default function QuranMain() {
 		<div className='flex flex-start '>
 			<article>
 				<Sidebar
+					setCurrentIndex={setCurrentIndex}
 					handleSearchInputChange={handleSearchInputChange}
 					goToSearchedImage={goToSearchedImage}
 				/>
@@ -199,29 +200,16 @@ export default function QuranMain() {
 												? "visible flex justify-center relative"
 												: "hidden"
 										}`}>
-										{index === currentIndex ? (
-											<>
-												<Image
-													src={image.src}
-													width={700}
-													height={940}
-													alt={image.alt}
-													loading='lazy'
-												/>
-												<ClaimDeedsLeft pageDeeds={image.alt} />
-											</>
-										) : (
-											<>
-												<Image
-													src={image.src}
-													width={700}
-													height={940}
-													alt={image.alt}
-													loading='lazy'
-												/>
-												<ClaimDeedsRight pageDeeds={image.alt} />
-											</>
-										)}
+										<>
+											<Image
+												src={image.src}
+												width={700}
+												height={940}
+												alt={image.alt}
+												loading='lazy'
+											/>
+											<ClaimDeedsLeft index={index} pageDeeds={image.alt} />
+										</>
 									</div>
 								))}
 							</div>
@@ -249,7 +237,7 @@ export default function QuranMain() {
 											alt={image.alt}
 											loading='lazy'
 										/>
-										<ClaimDeedsLeft pageDeeds={image.alt} />
+										<ClaimDeedsLeft index={index} pageDeeds={image.alt} />
 									</div>
 								))}
 							</div>

@@ -1,7 +1,7 @@
 [
-	{ "sura": "Al-fatiha", "page": 1, "location": "/images/location/mekka.png" },
-	{ "sura": "Al-Baqara", "page": 3, "location": "/images/location/medina.png" },
-	{ "sura": "Al-Imran", "page": 49, "location": "/images/location/medina.png" },
+	{ "sura": "Al-fatiha", "page": 0, "location": "/images/location/mekka.png" },
+	{ "sura": "Al-Baqara", "page": 0, "location": "/images/location/medina.png" },
+	{ "sura": "Al-Imran", "page": 48, "location": "/images/location/medina.png" },
 	{ "sura": "An-Nisa", "page": 1, "location": "/images/location/medina.png" },
 	{ "sura": "Al-Maida", "page": 1, "location": "/images/location/medina.png" },
 	{ "sura": "Al-Anam", "page": 1, "location": "/images/location/mekka.png" },

@@ -13,6 +13,7 @@ interface CurrentPage {
 interface SidebarProps {
 	handleSearchInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	goToSearchedImage: () => void;
+	setCurrentIndex: Dispatch<SetStateAction<number>>;
 }
 export default function Siderbar(props: SidebarProps) {
 	const [transform, setTransform] = useState(350);
@@ -95,8 +96,13 @@ export default function Siderbar(props: SidebarProps) {
 						</div>
 						<nav className='flex flex-col flex-1 w-64 p-4 mt-4'>
 							{suras.map((u, index) => {
+								console.log("index", u.page);
+
 								return (
-									<div key={index} className='mt-4 ml-4'>
+									<div
+										onClick={() => props.setCurrentIndex(u.page)}
+										key={index}
+										className='mt-4 ml-4'>
 										<a href='#' className='flex items-center space-x-2'>
 											<img src={u.location} alt='' />
 											<span>{u.sura}</span>

@@ -21,19 +21,20 @@ export default function ClaimDeeds(props: Deeds) {
 	const hiddenFuncFirst = async () => {
 		const docRef = doc(db, "login", "semir01020@gmail.com");
 		const docSnap = await getDoc(docRef);
-		if (docSnap.exists()) {
-			const hasanat = docSnap.data().hasanat || 0;
-			updateDoc(docRef, {
-				hasanat: hasanat + parseInt(props.pageDeeds),
-			}).then(() => {
-				sethiddenFirst("");
+		// if (docSnap.exists()) {
+		// 	const hasanat = docSnap.data().hasanat || 0;
+		// 	updateDoc(docRef, {
+		// 		hasanat: hasanat + parseInt(props.pageDeeds),
+		// 	}).then(() => {
+		// 		sethiddenFirst("");
 
-				setTimeout(() => {
-					sethiddenFirst("hidden");
-					setrReaded(true);
-				}, 500);
-			});
-		}
+		// 		setTimeout(() => {
+		// 			sethiddenFirst("hidden");
+		// 			setrReaded(true);
+		// 		}, 500);
+		// 	});
+		// }
+		setrReaded(true);
 		setCheckbox(!checkbox);
 		setInput(!input);
 	};
@@ -41,10 +42,13 @@ export default function ClaimDeeds(props: Deeds) {
 		setCheckbox(!checkbox);
 		setInput(!input);
 	};
+	useEffect(() => {
+		console.log("right", readed);
+	}, [readed]);
 	return (
 		<div className='w-full h-full absolute flex justify-center'>
 			<img
-				className={`absolute top-4 left-4 w-8 xl:right-6 xl:top-6 xl:w-12`}
+				className={`absolute top-4  w-8  xl:top-6 xl:w-12`}
 				alt={"nein"}
 				src={`/images/icons/${readed ? "ja" : "nein"}.png`}
 			/>

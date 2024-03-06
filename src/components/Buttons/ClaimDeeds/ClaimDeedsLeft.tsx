@@ -10,6 +10,7 @@ import {
 } from "firebase/firestore";
 interface Deeds {
 	pageDeeds: string;
+	index: number;
 }
 
 export default function ClaimDeeds(props: Deeds) {
@@ -17,6 +18,7 @@ export default function ClaimDeeds(props: Deeds) {
 	const [checkbox, setCheckbox] = useState(false);
 	const [input, setInput] = useState(false);
 	const [readed, setrReaded] = useState(false);
+	console.log("claim", props);
 
 	const hiddenFuncFirst = async () => {
 		const docRef = doc(db, "login", "semir01020@gmail.com");
@@ -35,6 +37,7 @@ export default function ClaimDeeds(props: Deeds) {
 				}, 500);
 			});
 		}
+
 		setCheckbox(!checkbox);
 		setInput(!input);
 	};
@@ -42,10 +45,15 @@ export default function ClaimDeeds(props: Deeds) {
 		setCheckbox(!checkbox);
 		setInput(!input);
 	};
+	useEffect(() => {
+		console.log("Left", readed);
+	}, [readed]);
 	return (
 		<div className='w-full h-full absolute flex justify-center'>
 			<img
-				className={`absolute top-4 right-4 w-8 xl:right-6 xl:top-6 xl:w-12`}
+				className={`absolute top-4 ${
+					props.index % 2 === 0 ? "right-6" : "left-6"
+				} right-4 w-8 xl:right-6 xl:top-6 xl:w-12`}
 				alt={"nein"}
 				src={`/images/icons/${readed ? "ja" : "nein"}.png`}
 			/>
