@@ -6,10 +6,11 @@ interface UserData {
 	hasanat: number;
 	username: string;
 	password: string;
+	email: string;
 }
 
 interface Props {
-	loggedUser: UserData | null;
+	loggedUser: UserData | boolean;
 	setLoggedUser: (user: any) => void;
 }
 export default function Login({ setLoggedUser }: Props) {
@@ -18,16 +19,19 @@ export default function Login({ setLoggedUser }: Props) {
 
 	const userLogin = async () => {
 		const userInfos = await UserLoginController(userName, password);
-
-		setLoggedUser(userInfos);
-		if (typeof localStorage !== "undefined") {
-			localStorage.setItem("loggedUser", JSON.stringify(userInfos));
+		if (userInfos == false) {
+			alert("Falsche Daten");
+		} else {
+			setLoggedUser(userInfos);
+			if (typeof localStorage !== "undefined") {
+				localStorage.setItem("loggedUser", JSON.stringify(userInfos));
+			}
 		}
 	};
 
 	return (
 		<>
-			<div className='w-[100%] bg-gray-200 flex justify-center items-center h-screen'>
+			<div className=' flex justify-center items-center'>
 				<div className='bg-white p-8 rounded-lg shadow-md w-96'>
 					<h2 className='text-2xl font-bold mb-4'>Login</h2>
 					<div>

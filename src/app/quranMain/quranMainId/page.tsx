@@ -33,16 +33,16 @@ export default function QuranMain() {
 	};
 
 	const Left = () => {
-		setCurrentIndex(
-			currentIndex - screenValue < 0
-				? preloadedImages.length - screenValue
-				: currentIndex - screenValue,
-		);
 		setTransform(-750);
 		setLeftHidden("opacity-0");
 
 		setTimeout(() => {
 			setTransform(750);
+			setCurrentIndex(
+				currentIndex - screenValue < 0
+					? preloadedImages.length - screenValue
+					: currentIndex - screenValue,
+			);
 		}, 250);
 
 		setTimeout(() => {
@@ -52,16 +52,16 @@ export default function QuranMain() {
 	};
 
 	const Right = () => {
-		setCurrentIndex(
-			currentIndex + screenValue >= preloadedImages.length
-				? 0
-				: currentIndex + screenValue,
-		);
 		setTransform(750);
 		setLeftHidden("opacity-0");
 
 		setTimeout(() => {
 			setTransform(-750);
+			setCurrentIndex(
+				currentIndex + screenValue >= preloadedImages.length
+					? 0
+					: currentIndex + screenValue,
+			);
 		}, 250);
 
 		setTimeout(() => {

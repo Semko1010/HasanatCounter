@@ -17,6 +17,7 @@ const config: Config = {
 				quran5: ["quran5", "sans"],
 			},
 			backgroundImage: {
+				"hero-pattern": "url('/images/bg/bgQuran1.jpeg')",
 				"gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
 				"gradient-conic":
 					"conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",

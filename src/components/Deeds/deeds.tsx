@@ -17,17 +17,18 @@ interface UserData {
 }
 
 interface Props {
-	loggedUser: UserData | null;
+	loggedUser: UserData | boolean;
 }
 
 export default function Deeds({ loggedUser }: Props) {
 	const [deeds, setDeeds] = useState();
 
 	const [myHasanat, setHasanat] = useState("");
+	console.log("myHasanat", myHasanat);
 
 	useEffect(() => {
 		const getUserData = async () => {
-			if (loggedUser) {
+			if (loggedUser && typeof loggedUser !== "boolean") {
 				const userDocRef = doc(db, "login", loggedUser.email);
 				const unsubscribe = onSnapshot(userDocRef, docSnap => {
 					if (docSnap.exists()) {

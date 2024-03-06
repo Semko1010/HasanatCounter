@@ -18,10 +18,20 @@ export default function ClaimDeeds(props: Deeds) {
 	const [checkbox, setCheckbox] = useState(false);
 	const [input, setInput] = useState(false);
 	const [readed, setrReaded] = useState(false);
-	console.log("claim", props);
-
+	const [deedsEmail, setDeedsEmail] = useState<string>("");
 	const hiddenFuncFirst = async () => {
-		const docRef = doc(db, "login", "semir01020@gmail.com");
+		if (typeof localStorage !== "undefined") {
+			const loggedUserJSON: any = localStorage.getItem("loggedUser");
+			if (loggedUserJSON !== null) {
+				const loggedUser = JSON.parse(loggedUserJSON);
+				setDeedsEmail(loggedUser.email);
+				// Verwende die Benutzerdaten
+				console.log("Benutzerdaten aus dem localStorage:", loggedUser);
+			} else {
+				console.log("Keine Benutzerdaten im localStorage gefunden.");
+			}
+		}
+		const docRef = doc(db, "login", deedsEmail);
 		const docSnap = await getDoc(docRef);
 
 		if (docSnap.exists()) {
@@ -45,9 +55,7 @@ export default function ClaimDeeds(props: Deeds) {
 		setCheckbox(!checkbox);
 		setInput(!input);
 	};
-	useEffect(() => {
-		console.log("Left", readed);
-	}, [readed]);
+
 	return (
 		<div className='w-full h-full absolute flex justify-center'>
 			<img
