@@ -59,7 +59,7 @@ export default function Home() {
 				<>
 					<Deeds loggedUser={loggedUser} />
 
-					<QuranMain />
+					<QuranMain loggedUser={loggedUser} />
 				</>
 			)}
 		</main>

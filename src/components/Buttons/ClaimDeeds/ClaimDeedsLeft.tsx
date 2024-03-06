@@ -8,6 +8,12 @@ import {
 	updateDoc,
 	getDoc,
 } from "firebase/firestore";
+interface UserData {
+	hasanat: number;
+	username: string;
+	password: string;
+	email: string;
+}
 interface Deeds {
 	pageDeeds: string;
 	index: number;
@@ -24,28 +30,28 @@ export default function ClaimDeeds(props: Deeds) {
 			const loggedUserJSON: any = localStorage.getItem("loggedUser");
 			if (loggedUserJSON !== null) {
 				const loggedUser = JSON.parse(loggedUserJSON);
-				setDeedsEmail(loggedUser.email);
-				// Verwende die Benutzerdaten
+
+				const docRef = doc(db, "login", loggedUser.email);
+				const docSnap = await getDoc(docRef);
+
+				if (docSnap.exists()) {
+					const hasanat = docSnap.data().hasanat || 0;
+					updateDoc(docRef, {
+						hasanat: hasanat + parseInt(props.pageDeeds),
+					}).then(() => {
+						sethiddenFirst("");
+
+						setTimeout(() => {
+							sethiddenFirst("hidden");
+							setrReaded(true);
+						}, 500);
+					});
+				}
+
 				console.log("Benutzerdaten aus dem localStorage:", loggedUser);
 			} else {
 				console.log("Keine Benutzerdaten im localStorage gefunden.");
 			}
-		}
-		const docRef = doc(db, "login", deedsEmail);
-		const docSnap = await getDoc(docRef);
-
-		if (docSnap.exists()) {
-			const hasanat = docSnap.data().hasanat || 0;
-			updateDoc(docRef, {
-				hasanat: hasanat + parseInt(props.pageDeeds),
-			}).then(() => {
-				sethiddenFirst("");
-
-				setTimeout(() => {
-					sethiddenFirst("hidden");
-					setrReaded(true);
-				}, 500);
-			});
 		}
 
 		setCheckbox(!checkbox);

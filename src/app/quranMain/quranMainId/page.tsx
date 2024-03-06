@@ -10,7 +10,19 @@ import quranJs from "../../../api/quranJs.json";
 import Sidebar from "../../../components/sidebar/Sidebar";
 import Image from "next/image";
 import { Audio, CirclesWithBar } from "react-loader-spinner";
-export default function QuranMain() {
+
+interface UserData {
+	hasanat: number;
+	username: string;
+	password: string;
+	email: string;
+}
+
+interface Props {
+	loggedUser: UserData | boolean;
+}
+
+export default function QuranMain(props: Props) {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [screenValue, setScreenValue] = useState(1);
 
