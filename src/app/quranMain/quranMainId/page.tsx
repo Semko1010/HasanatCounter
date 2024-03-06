@@ -9,7 +9,7 @@ import ClaimDeedsLeft from "../../../components/Buttons/ClaimDeeds/ClaimDeedsLef
 import quranJs from "../../../api/quranJs.json";
 import Sidebar from "../../../components/sidebar/Sidebar";
 import Image from "next/image";
-
+import { Audio, CirclesWithBar } from "react-loader-spinner";
 export default function QuranMain() {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [screenValue, setScreenValue] = useState(1);
@@ -174,84 +174,101 @@ export default function QuranMain() {
 					goToSearchedImage={goToSearchedImage}
 				/>
 			</article>
-			<main className=' flex justify-center '>
-				<div className='flex gap-4'>
-					<div className='hidden lg:flex flex-col align-center justify-center'>
-						<div onClick={Right} className='flex justify-center items-center'>
-							<ButtonLeft currentPage={{ currentPage, setCurrentPage }} />
-							{/* <button >Vor</button> */}
+			{preloadedImages.length > 0 ? (
+				<main className=' flex justify-center '>
+					<div className='flex gap-4'>
+						<div className='hidden lg:flex flex-col align-center justify-center'>
+							<div onClick={Right} className='flex justify-center items-center'>
+								<ButtonLeft currentPage={{ currentPage, setCurrentPage }} />
+								{/* <button >Vor</button> */}
+							</div>
 						</div>
-					</div>
-					<div
-						onTouchStart={onTouchStart}
-						onTouchMove={onTouchMove}
-						onTouchEnd={onTouchEnd}
-						className='flex flex-col align-center justify-center'>
-						{/* desktop */}
 						<div
-							style={{ transform: `translateX(${transform}px)`, left: "0" }}
-							className={`${leftHidden} hidden xl:flex duration-300 mt-28 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center`}>
-							<div className=' flex flex-col xl:flex-row-reverse'>
-								{preloadedImages.map((image, index) => (
-									<div
-										key={index}
-										className={` ${
-											index === currentIndex || index === currentIndex + 1
-												? "visible flex justify-center relative"
-												: "hidden"
-										}`}>
-										<>
+							onTouchStart={onTouchStart}
+							onTouchMove={onTouchMove}
+							onTouchEnd={onTouchEnd}
+							className='flex flex-col align-center justify-center'>
+							{/* desktop */}
+							<div
+								style={{ transform: `translateX(${transform}px)`, left: "0" }}
+								className={`${leftHidden} hidden xl:flex duration-300 mt-28 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center`}>
+								<div className=' flex flex-col xl:flex-row-reverse'>
+									{preloadedImages.map((image, index) => (
+										<div
+											key={index}
+											className={` ${
+												index === currentIndex || index === currentIndex + 1
+													? "visible flex justify-center relative"
+													: "hidden"
+											}`}>
+											<>
+												<Image
+													src={image.src}
+													width={700}
+													height={940}
+													alt={image.alt}
+													loading='lazy'
+												/>
+												<ClaimDeedsLeft index={index} pageDeeds={image.alt} />
+											</>
+										</div>
+									))}
+								</div>
+							</div>
+
+							{/* desktop */}
+
+							{/* Mobile */}
+							<div
+								style={{ transform: `translateX(${transform}px)`, left: "0" }}
+								className={`${leftHidden} xl:hidden duration-300 mt-28 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center`}>
+								<div className='justify-center flex flex-col xl:flex-row-reverse'>
+									{preloadedImages.map((image, index) => (
+										<div
+											key={index}
+											className={` ${
+												index === currentIndex
+													? "visible flex justify-center"
+													: "hidden"
+											}`}>
 											<Image
 												src={image.src}
-												width={700}
-												height={940}
+												width={370}
+												height={640}
 												alt={image.alt}
 												loading='lazy'
 											/>
 											<ClaimDeedsLeft index={index} pageDeeds={image.alt} />
-										</>
-									</div>
-								))}
+										</div>
+									))}
+								</div>
+							</div>
+
+							{/* Mobile */}
+						</div>
+						<div className='hidden lg:flex  flex-col align-center justify-center'>
+							<div onClick={Left} className='flex justify-center items-center'>
+								<ButtonRight currentPage={{ currentPage, setCurrentPage }} />
 							</div>
 						</div>
-
-						{/* desktop */}
-
-						{/* Mobile */}
-						<div
-							style={{ transform: `translateX(${transform}px)`, left: "0" }}
-							className={`${leftHidden} xl:hidden duration-300 mt-28 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center`}>
-							<div className='justify-center flex flex-col xl:flex-row-reverse'>
-								{preloadedImages.map((image, index) => (
-									<div
-										key={index}
-										className={` ${
-											index === currentIndex
-												? "visible flex justify-center"
-												: "hidden"
-										}`}>
-										<Image
-											src={image.src}
-											width={370}
-											height={640}
-											alt={image.alt}
-											loading='lazy'
-										/>
-										<ClaimDeedsLeft index={index} pageDeeds={image.alt} />
-									</div>
-								))}
-							</div>
-						</div>
-
-						{/* Mobile */}
 					</div>
-					<div className='hidden lg:flex  flex-col align-center justify-center'>
-						<div onClick={Left} className='flex justify-center items-center'>
-							<ButtonRight currentPage={{ currentPage, setCurrentPage }} />
-						</div>
-					</div>
+				</main>
+			) : (
+				<div className='flex items-center justify-center h-screen'>
+					<CirclesWithBar
+						height='100'
+						width='100'
+						color='#4fa94d'
+						outerCircleColor='#4fa94d'
+						innerCircleColor='#4fa94d'
+						barColor='#4fa94d'
+						ariaLabel='circles-with-bar-loading'
+						wrapperStyle={{}}
+						wrapperClass=''
+						visible={true}
+					/>
 				</div>
-			</main>
+			)}
 		</div>
 	);
 }
