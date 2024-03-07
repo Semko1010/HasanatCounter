@@ -201,19 +201,20 @@ export default function QuranMain() {
 							<div
 								style={{ transform: `translateX(${transform}px)`, left: "0" }}
 								className={`${leftHidden} hidden xl:flex duration-300 mt-28 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center`}>
-								<div className=' flex flex-col xl:flex-row-reverse max-w-[1000px] fullhd::max-w-[1300px]'>
+								<div className=' flex flex-col xl:flex-row-reverse max-w-[1000px] qhd:max-w-[1250px] fullhd:max-w-[1350px]'>
 									{preloadedImages.map((image, index) => (
 										<div
 											key={index}
 											className={` ${
 												index === currentIndex || index === currentIndex + 1
-													? "visible flex justify-center relative w-screen h-screen max-h-[750px] fullhd:max-h-[950px]"
+													? "visible flex justify-center relative w-screen h-screen max-h-[750px] qhd:max-h-[950px] fullhd:max-h-[1050px]"
 													: "hidden"
 											}`}>
 											<>
 												<Image
 													src={image.src}
-													fill
+													width={700}
+													height={900}
 													alt={image.alt}
 													loading='lazy'
 												/>
