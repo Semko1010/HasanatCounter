@@ -29,7 +29,6 @@ export default function Home() {
 			}
 		}
 	}, []);
-	console.log("loggedUser", loggedUser);
 
 	return (
 		<main className='bg-[#F8F8FF] flex flex-col justify-center items-center'>
@@ -59,7 +58,7 @@ export default function Home() {
 				<>
 					<Deeds loggedUser={loggedUser} />
 
-					<QuranMain loggedUser={loggedUser} />
+					<QuranMain />
 				</>
 			)}
 		</main>

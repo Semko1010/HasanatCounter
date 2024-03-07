@@ -24,7 +24,6 @@ export default function Deeds({ loggedUser }: Props) {
 	const [deeds, setDeeds] = useState();
 
 	const [myHasanat, setHasanat] = useState("");
-	console.log("myHasanat", myHasanat);
 
 	useEffect(() => {
 		const getUserData = async () => {

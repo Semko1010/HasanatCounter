@@ -42,9 +42,7 @@ export default function ClaimDeeds(props: Deeds) {
 		setCheckbox(!checkbox);
 		setInput(!input);
 	};
-	useEffect(() => {
-		console.log("right", readed);
-	}, [readed]);
+
 	return (
 		<div className='w-full h-full absolute flex justify-center'>
 			<img

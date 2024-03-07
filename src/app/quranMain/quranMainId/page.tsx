@@ -6,6 +6,7 @@ import ButtonRight from "../../../components/Buttons/buttonRight";
 import ButtonLeft from "../../../components/Buttons/buttonLeft";
 import ClaimDeedsRight from "../../../components/Buttons/ClaimDeeds/ClaimDeedsright";
 import ClaimDeedsLeft from "../../../components/Buttons/ClaimDeeds/ClaimDeedsLeft";
+import Letters from "../../../api/letters.json";
 import quranJs from "../../../api/quranJs.json";
 import Sidebar from "../../../components/sidebar/Sidebar";
 import Image from "next/image";
@@ -18,11 +19,7 @@ interface UserData {
 	email: string;
 }
 
-interface Props {
-	loggedUser: UserData | boolean;
-}
-
-export default function QuranMain(props: Props) {
+export default function QuranMain() {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [screenValue, setScreenValue] = useState(1);
 
