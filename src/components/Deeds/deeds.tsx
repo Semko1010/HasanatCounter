@@ -42,6 +42,8 @@ export default function Deeds({ loggedUser }: Props) {
 								(docSnap.data().hasanat / 1000).toFixed(1) + "K";
 							setHasanat(formattedNumber);
 							return formattedNumber;
+						} else {
+							setHasanat(docSnap.data().hasanat);
 						}
 					} else {
 						console.log("Benutzerdokument nicht gefunden.");
