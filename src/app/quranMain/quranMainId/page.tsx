@@ -1,6 +1,6 @@
 "use client";
 
-import { Dispatch, Key, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import ButtonRight from "../../../components/Buttons/buttonRight";
 import ButtonLeft from "../../../components/Buttons/buttonLeft";
@@ -11,7 +11,6 @@ import quranJs from "../../../api/quranJs.json";
 import Sidebar from "../../../components/sidebar/Sidebar";
 import Image from "next/image";
 import { Audio, CirclesWithBar } from "react-loader-spinner";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 interface UserData {
 	hasanat: number;
@@ -29,7 +28,7 @@ export default function QuranMain() {
 
 	const [transform, setTransform] = useState(0);
 	const [leftHidden, setLeftHidden] = useState("");
-	const [currentIndex, setCurrentIndex] = useState(0);
+	const [currentIndex, setCurrentIndex] = useState(3);
 	const [preloadedImages, setPreloadedImages] = useState<HTMLImageElement[]>(
 		[],
 	);
@@ -90,7 +89,7 @@ export default function QuranMain() {
 	};
 
 	const preloadImages = async (urls: any) => {
-		const images: any = [];
+		const images = [];
 		for (const url of urls) {
 			const img1 = new (window as any).Image();
 			const img2 = new (window as any).Image();
@@ -99,12 +98,14 @@ export default function QuranMain() {
 			img1.alt = url[0].hasanatPage1;
 			img2.src = url[0].image2;
 			img2.alt = url[0].hasanatPage2;
-			await Promise.all([img1, img2]);
-			images.push([img1, img2]);
+			await new Promise((resolve, reject) => {
+				img1.onload = img1.onerror = img2.onload = img2.onerror = resolve;
+				img1.onabort = img2.onabort = reject;
+			});
+			images.push(img1, img2);
 		}
 		return images;
 	};
-
 	useEffect(() => {
 		const url = quranJs.map(url => {
 			return [url];
@@ -112,13 +113,15 @@ export default function QuranMain() {
 
 		if (typeof window !== "undefined") {
 			const screenWidth = window.screen.width;
-			setScreenValue(screenWidth < 1280 ? 1 : 2);
+			if (screenWidth < 1280) {
+				setScreenValue(1);
+			} else {
+				setScreenValue(2);
+			}
 		}
 
 		preloadImages(url)
-			.then(images => {
-				setPreloadedImages(images);
-			})
+			.then(images => setPreloadedImages(images))
 			.catch(error => console.error("Fehler beim Vorladen der Bilder:", error));
 	}, []);
 	useEffect(() => {
@@ -198,32 +201,25 @@ export default function QuranMain() {
 							<div
 								style={{ transform: `translateX(${transform}px)`, left: "0" }}
 								className={`${leftHidden} hidden xl:flex duration-300 mt-28 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center`}>
-								<div className=' flex flex-col xl:flex-row-reverse max-w-[1000px] qhd:max-w-[1250px] fullhd:max-w-[1350px]'>
-									{preloadedImages
-										.slice(currentIndex, currentIndex + 1)
-										.map((images: any, index) => (
-											<div
-												key={index}
-												className='flex justify-center relative w-screen h-screen max-h-[750px]'>
-												{images.map(
-													(
-														image: { src: string | StaticImport; alt: string },
-														i: Key | null | undefined,
-													) => (
-														<div key={i} className='relative'>
-															<Image
-																src={image.src}
-																width={700}
-																height={900}
-																alt={image.alt}
-																loading='lazy'
-															/>
-															{/* weitere Komponenten */}
-														</div>
-													),
-												)}
-											</div>
-										))}
+								<div className=' flex flex-col xl:flex-row-reverse max-w-[1000px] fullhd:max-w-[1300px]'>
+									<>
+										<Image
+											src={`/images/quran-madina/holy-quran-beautiful-arabic-text_000${currentIndex}.webp`}
+											width={400}
+											height={900}
+											alt={"de"}
+											loading='lazy'
+										/>
+										<Image
+											src={`/images/quran-madina/holy-quran-beautiful-arabic-text_000${
+												currentIndex + 1
+											}.webp`}
+											width={400}
+											height={900}
+											alt={"de"}
+											loading='lazy'
+										/>
+									</>
 								</div>
 							</div>
 
