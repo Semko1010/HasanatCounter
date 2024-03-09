@@ -28,7 +28,7 @@ export default function QuranMain() {
 
 	const [transform, setTransform] = useState(0);
 	const [leftHidden, setLeftHidden] = useState("");
-	const [currentIndex, setCurrentIndex] = useState(3);
+	const [currentIndex, setCurrentIndex] = useState(0);
 	const [preloadedImages, setPreloadedImages] = useState<HTMLImageElement[]>(
 		[],
 	);
@@ -44,14 +44,13 @@ export default function QuranMain() {
 	const Left = () => {
 		setTransform(-750);
 		setLeftHidden("opacity-0");
-
+		setCurrentIndex(
+			currentIndex - screenValue < 0
+				? preloadedImages.length - screenValue
+				: currentIndex - screenValue,
+		);
 		setTimeout(() => {
 			setTransform(750);
-			setCurrentIndex(
-				currentIndex - screenValue < 0
-					? preloadedImages.length - screenValue
-					: currentIndex - screenValue,
-			);
 		}, 250);
 
 		setTimeout(() => {
@@ -63,14 +62,13 @@ export default function QuranMain() {
 	const Right = () => {
 		setTransform(750);
 		setLeftHidden("opacity-0");
-
+		setCurrentIndex(
+			currentIndex + screenValue >= preloadedImages.length
+				? 0
+				: currentIndex + screenValue,
+		);
 		setTimeout(() => {
 			setTransform(-750);
-			setCurrentIndex(
-				currentIndex + screenValue >= preloadedImages.length
-					? 0
-					: currentIndex + screenValue,
-			);
 		}, 250);
 
 		setTimeout(() => {
@@ -201,25 +199,27 @@ export default function QuranMain() {
 							<div
 								style={{ transform: `translateX(${transform}px)`, left: "0" }}
 								className={`${leftHidden} hidden xl:flex duration-300 mt-28 gap-2 xl:gap-0 flex-col-reverse xl:flex-row border-2 flex justify-center items-center`}>
-								<div className=' flex flex-col xl:flex-row-reverse max-w-[1000px] fullhd:max-w-[1300px]'>
-									<>
-										<Image
-											src={`/images/quran-madina/holy-quran-beautiful-arabic-text_000${currentIndex}.webp`}
-											width={400}
-											height={900}
-											alt={"de"}
-											loading='lazy'
-										/>
-										<Image
-											src={`/images/quran-madina/holy-quran-beautiful-arabic-text_000${
-												currentIndex + 1
-											}.webp`}
-											width={400}
-											height={900}
-											alt={"de"}
-											loading='lazy'
-										/>
-									</>
+								<div className=' flex flex-col xl:flex-row-reverse max-w-[1000px] fullhd::max-w-[1300px]'>
+									{preloadedImages.map((image, index) => (
+										<div
+											key={index}
+											className={` ${
+												index === currentIndex || index === currentIndex + 1
+													? "visible flex justify-center relative w-screen h-screen max-h-[750px] fullhd:max-h-[950px]"
+													: "hidden"
+											}`}>
+											<>
+												<Image
+													src={image.src}
+													width={700}
+													height={900}
+													alt={image.alt}
+													loading='lazy'
+												/>
+												<ClaimDeedsLeft index={index} pageDeeds={image.alt} />
+											</>
+										</div>
+									))}
 								</div>
 							</div>
 
