@@ -16,7 +16,7 @@ const config: Config = {
 				// => @media (min-width: 1024px) { ... }
 
 				desktop: "1280px",
-				qhd: "1600px",
+				qhd: "1750px",
 				fullhd: "1920px",
 				// => @media (min-width: 1280px) { ... }
 			},
