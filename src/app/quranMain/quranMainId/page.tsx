@@ -211,13 +211,19 @@ export default function QuranMain() {
 													: "hidden"
 											}`}>
 											<>
-												<Image
+												<img
+													src={image.src}
+													width={700}
+													height={900}
+													alt={image.alt}
+												/>
+												{/* <Image
 													src={image.src}
 													width={700}
 													height={900}
 													alt={image.alt}
 													loading='lazy'
-												/>
+												/> */}
 												<ClaimDeedsLeft index={index} pageDeeds={image.alt} />
 											</>
 										</div>
