@@ -208,16 +208,40 @@ export default function QuranMain() {
 													? "visible flex justify-center relative w-screen h-screen max-h-[750px] fullhd:max-h-[950px]"
 													: "hidden"
 											}`}>
-											<>
-												<Image
-													src={image.src}
-													width={700}
-													height={900}
-													alt={image.alt}
-													loading='lazy'
-												/>
-												<ClaimDeedsLeft index={index} pageDeeds={image.alt} />
-											</>
+											{image ? (
+												<>
+													<>
+														<Image
+															src={image.src}
+															width={700}
+															height={900}
+															alt={image.alt}
+															loading='lazy'
+														/>
+														<ClaimDeedsLeft
+															index={index}
+															pageDeeds={image.alt}
+														/>
+													</>
+												</>
+											) : (
+												<>
+													<div className='flex items-center justify-center h-screen'>
+														<CirclesWithBar
+															height='100'
+															width='100'
+															color='#4fa94d'
+															outerCircleColor='#4fa94d'
+															innerCircleColor='#4fa94d'
+															barColor='#4fa94d'
+															ariaLabel='circles-with-bar-loading'
+															wrapperStyle={{}}
+															wrapperClass=''
+															visible={true}
+														/>
+													</div>
+												</>
+											)}
 										</div>
 									))}
 								</div>
