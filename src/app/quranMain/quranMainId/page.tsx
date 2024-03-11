@@ -284,6 +284,12 @@ export default function QuranMain() {
 												alt={image.alt}
 												loading='lazy'
 											/> */}
+											<img
+												src={image.src}
+												width={700}
+												height={900}
+												alt={image.alt}
+											/>
 											<ClaimDeedsLeft index={index} pageDeeds={image} />
 										</div>
 									))}
