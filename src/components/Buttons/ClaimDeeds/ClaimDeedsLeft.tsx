@@ -15,7 +15,12 @@ interface UserData {
 	email: string;
 }
 interface Deeds {
-	pageDeeds: string;
+	pageDeeds: {
+		hasanatPage1: number;
+		hasanatPage2: number;
+		hasanatPage3: number;
+	};
+
 	index: number;
 }
 
@@ -33,11 +38,16 @@ export default function ClaimDeeds(props: Deeds) {
 
 				const docRef = doc(db, "login", loggedUser.email);
 				const docSnap = await getDoc(docRef);
+				console.log("proips", props.pageDeeds.hasanatPage2);
 
 				if (docSnap.exists()) {
 					const hasanat = docSnap.data().hasanat || 0;
 					updateDoc(docRef, {
-						hasanat: hasanat + parseInt(props.pageDeeds),
+						hasanat:
+							hasanat +
+							props.pageDeeds.hasanatPage1 +
+							props.pageDeeds.hasanatPage2 +
+							props.pageDeeds.hasanatPage3,
 					}).then(() => {
 						sethiddenFirst("");
 
@@ -109,7 +119,11 @@ export default function ClaimDeeds(props: Deeds) {
 			</div>
 
 			<p
-				className={`animate-ping ${hidden} absolute bottom-24  text-[green] text-xl lg:text-3xl`}>{`+${props.pageDeeds} Hasanat`}</p>
+				className={`animate-ping ${hidden} absolute bottom-24  text-[green] text-xl lg:text-3xl`}>{`+${
+				props.pageDeeds.hasanatPage1 +
+				props.pageDeeds.hasanatPage2 +
+				props.pageDeeds.hasanatPage3
+			} Hasanat`}</p>
 		</div>
 	);
 }

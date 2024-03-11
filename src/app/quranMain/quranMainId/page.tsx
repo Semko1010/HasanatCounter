@@ -7,18 +7,16 @@ import ButtonLeft from "../../../components/Buttons/buttonLeft";
 import ClaimDeedsRight from "../../../components/Buttons/ClaimDeeds/ClaimDeedsright";
 import ClaimDeedsLeft from "../../../components/Buttons/ClaimDeeds/ClaimDeedsLeft";
 import Letters from "../../../api/letters.json";
-import quranJs from "../../../api/quranJs.json";
+import quranJs from "../../../api/old.json";
 import Sidebar from "../../../components/sidebar/Sidebar";
 import Image from "next/image";
 import { Audio, CirclesWithBar } from "react-loader-spinner";
 
-interface UserData {
-	hasanat: number;
-	username: string;
-	password: string;
-	email: string;
+interface CustomImageElement extends HTMLImageElement {
+	hasanatPage1: number;
+	hasanatPage2: number;
+	hasanatPage3: number;
 }
-
 export default function QuranMain() {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [screenValue, setScreenValue] = useState(1);
@@ -29,7 +27,7 @@ export default function QuranMain() {
 	const [transform, setTransform] = useState(0);
 	const [leftHidden, setLeftHidden] = useState("");
 	const [currentIndex, setCurrentIndex] = useState(0);
-	const [preloadedImages, setPreloadedImages] = useState<HTMLImageElement[]>(
+	const [preloadedImages, setPreloadedImages] = useState<CustomImageElement[]>(
 		[],
 	);
 
@@ -89,21 +87,49 @@ export default function QuranMain() {
 	};
 
 	const preloadImages = async (urls: any) => {
-		const images = [];
-		for (const url of urls) {
+		const images: any = [];
+		urls.map((item: any) => {
+			console.log(item);
+
 			const img1 = new (window as any).Image();
 			const img2 = new (window as any).Image();
+			img1.src = item[0].image1.src;
 
-			img1.src = url[0].image1;
-			img1.alt = url[0].hasanatPage1;
-			img2.src = url[0].image2;
-			img2.alt = url[0].hasanatPage2;
-			await new Promise((resolve, reject) => {
+			img2.src = item[0].image2.src;
+
+			new Promise((resolve, reject) => {
 				img1.onload = img1.onerror = img2.onload = img2.onerror = resolve;
 				img1.onabort = img2.onabort = reject;
 			});
-			images.push(img1, img2);
-		}
+			images.push(
+				{
+					src: item[0].image1.src,
+					hasanatPage1: item[0].image1.hasanatPage1,
+					hasanatPage2: item[0].image1.hasanatPage2,
+					hasanatPage3: item[0].image1.hasanatPage3,
+				},
+				{
+					src: item[0].image2.src,
+					hasanatPage1: item[0].image2.hasanatPage1,
+					hasanatPage2: item[0].image2.hasanatPage2,
+					hasanatPage3: item[0].image2.hasanatPage3,
+				},
+			);
+		});
+		// for (const url of urls) {
+		// 	const img1 = new (window as any).Image();
+		// 	const img2 = new (window as any).Image();
+
+		// 	img1.src = url[0].image1;
+		// 	img1.alt = url[0].hasanatPage1;
+		// 	img2.src = url[0].image2;
+		// 	img2.alt = url[0].hasanatPage2;
+		// 	await new Promise((resolve, reject) => {
+		// 		img1.onload = img1.onerror = img2.onload = img2.onerror = resolve;
+		// 		img1.onabort = img2.onabort = reject;
+		// 	});
+		// 	images.push(img1, img2);
+		// }
 		return images;
 	};
 	useEffect(() => {
@@ -173,6 +199,11 @@ export default function QuranMain() {
 			}
 		}
 	};
+	console.log(
+		preloadedImages.map(i => {
+			console.log("if", i);
+		}),
+	);
 
 	return (
 		<div className='flex flex-start '>
@@ -211,20 +242,20 @@ export default function QuranMain() {
 													: "hidden"
 											}`}>
 											<>
-												{/* <img
+												<img
 													src={image.src}
 													width={700}
 													height={900}
 													alt={image.alt}
-												/> */}
-												<Image
+												/>
+												{/* <Image
 													src={image.src}
 													width={700}
 													height={900}
 													alt={image.alt}
 													loading='lazy'
-												/>
-												<ClaimDeedsLeft index={index} pageDeeds={image.alt} />
+												/> */}
+												<ClaimDeedsLeft index={index} pageDeeds={image} />
 											</>
 										</div>
 									))}
@@ -246,14 +277,14 @@ export default function QuranMain() {
 													? "visible flex justify-center"
 													: "hidden"
 											}`}>
-											<Image
+											{/* <Image
 												src={image.src}
 												width={370}
 												height={640}
 												alt={image.alt}
 												loading='lazy'
-											/>
-											<ClaimDeedsLeft index={index} pageDeeds={image.alt} />
+											/> */}
+											<ClaimDeedsLeft index={index} pageDeeds={image} />
 										</div>
 									))}
 								</div>

@@ -1,0 +1,452 @@
+[
+	{
+		"currentPage": 1,
+		"image1": {
+			"sura": "fatiha",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0003.webp",
+			"hasanatPage1": 1390,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0004.webp",
+			"hasanatPage1": 1650,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 3,
+		"image1": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0005.webp",
+			"hasanatPage1": 5160,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0006.webp",
+			"hasanatPage1": 5640,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 5,
+		"image1": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0007.webp",
+			"hasanatPage1": 4990,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0008.webp",
+			"hasanatPage1": 5930,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 7,
+		"image1": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0009.webp",
+			"hasanatPage1": 6040,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0010.webp",
+			"hasanatPage1": 5470,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 9,
+		"image1": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0011.webp",
+			"hasanatPage1": 5410,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0012.webp",
+			"hasanatPage1": 5580,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 11,
+		"image1": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0013.webp",
+			"hasanatPage1": 5760,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0014.webp",
+			"hasanatPage1": 5180,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 13,
+		"image1": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0015.webp",
+			"hasanatPage1": 5390,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0016.webp",
+			"hasanatPage1": 5090,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 15,
+		"image1": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0017.webp",
+			"hasanatPage1": 5090,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0018.webp",
+			"hasanatPage1": 5130,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 17,
+		"image1": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0019.webp",
+			"hasanatPage1": 5160,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0020.webp",
+			"hasanatPage1": 6100,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 19,
+		"image1": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0021.webp",
+			"hasanatPage1": 6100,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0022.webp",
+			"hasanatPage1": 5530,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 21,
+		"image1": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0023.webp",
+			"hasanatPage1": 5440,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0024.webp",
+			"hasanatPage1": 5550,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 23,
+		"image1": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0025.webp",
+			"hasanatPage1": 5470,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0026.webp",
+			"hasanatPage1": 5620,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 25,
+		"image1": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0027.webp",
+			"hasanatPage1": 5700,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0028.webp",
+			"hasanatPage1": 5460,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 27,
+		"image1": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0029.webp",
+			"hasanatPage1": 5920,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0030.webp",
+			"hasanatPage1": 5000,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 29,
+		"image1": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0031.webp",
+			"hasanatPage1": 5400,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0032.webp",
+			"hasanatPage1": 6730,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 31,
+		"image1": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0033.webp",
+			"hasanatPage1": 4680,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0034.webp",
+			"hasanatPage1": 5110,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 33,
+		"image1": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0035.webp",
+			"hasanatPage1": 6060,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0036.webp",
+			"hasanatPage1": 5300,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 35,
+		"image1": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0037.webp",
+			"hasanatPage1": 5650,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0038.webp",
+			"hasanatPage1": 6250,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 37,
+		"image1": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0039.webp",
+			"hasanatPage1": 6320,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0040.webp",
+			"hasanatPage1": 5710,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 39,
+		"image1": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0041.webp",
+			"hasanatPage1": 4910,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0042.webp",
+			"hasanatPage1": 4910,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 41,
+		"image1": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0043.webp",
+			"hasanatPage1": 4780,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0044.webp",
+			"hasanatPage1": 5750,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 43,
+		"image1": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0045.webp",
+			"hasanatPage1": 5240,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0046.webp",
+			"hasanatPage1": 5470,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 45,
+		"image1": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0047.webp",
+			"hasanatPage1": 5250,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0048.webp",
+			"hasanatPage1": 4660,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 47,
+		"image1": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0049.webp",
+			"hasanatPage1": 5500,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0050.webp",
+			"hasanatPage1": 5490,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 49,
+		"image1": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0051.webp",
+			"hasanatPage1": 5510,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura": "baqara",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0052.webp",
+			"hasanatPage1": 5320,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	}
+]
