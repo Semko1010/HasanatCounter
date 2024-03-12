@@ -39,7 +39,7 @@ export default function Login({ setLoggedUser }: Props) {
 							<label
 								className='block text-gray-700 text-sm font-bold mb-2'
 								htmlFor='username'>
-								Benutzername
+								Email
 							</label>
 							<input
 								onChange={e => setUserName(e.target.value)}

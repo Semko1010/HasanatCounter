@@ -23,7 +23,6 @@ export default function Home() {
 				const loggedUser = JSON.parse(loggedUserJSON);
 				setLoggedUser(loggedUser);
 				// Verwende die Benutzerdaten
-				console.log("Benutzerdaten aus dem localStorage:", loggedUser);
 			} else {
 				console.log("Keine Benutzerdaten im localStorage gefunden.");
 			}

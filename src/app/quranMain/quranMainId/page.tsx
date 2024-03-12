@@ -16,6 +16,9 @@ interface CustomImageElement extends HTMLImageElement {
 	hasanatPage1: number;
 	hasanatPage2: number;
 	hasanatPage3: number;
+	sura1: string;
+	sura2: string;
+	sura3: string;
 }
 export default function QuranMain() {
 	const [currentPage, setCurrentPage] = useState(1);
@@ -89,8 +92,6 @@ export default function QuranMain() {
 	const preloadImages = async (urls: any) => {
 		const images: any = [];
 		urls.map((item: any) => {
-			console.log(item);
-
 			const img1 = new (window as any).Image();
 			const img2 = new (window as any).Image();
 			img1.src = item[0].image1.src;
@@ -101,18 +102,25 @@ export default function QuranMain() {
 				img1.onload = img1.onerror = img2.onload = img2.onerror = resolve;
 				img1.onabort = img2.onabort = reject;
 			});
+
 			images.push(
 				{
 					src: item[0].image1.src,
 					hasanatPage1: item[0].image1.hasanatPage1,
 					hasanatPage2: item[0].image1.hasanatPage2,
 					hasanatPage3: item[0].image1.hasanatPage3,
+					sura1: item[0].image1.sura1,
+					sura2: item[0].image1.sura2,
+					sura3: item[0].image1.sura3,
 				},
 				{
 					src: item[0].image2.src,
 					hasanatPage1: item[0].image2.hasanatPage1,
 					hasanatPage2: item[0].image2.hasanatPage2,
 					hasanatPage3: item[0].image2.hasanatPage3,
+					sura1: item[0].image2.sura1,
+					sura2: item[0].image2.sura2,
+					sura3: item[0].image2.sura3,
 				},
 			);
 		});
@@ -199,11 +207,6 @@ export default function QuranMain() {
 			}
 		}
 	};
-	console.log(
-		preloadedImages.map(i => {
-			console.log("if", i);
-		}),
-	);
 
 	return (
 		<div className='flex flex-start '>
