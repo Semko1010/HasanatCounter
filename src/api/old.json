@@ -1166,6 +1166,292 @@
 		}
 	},
 	{
+		"currentPage": 107,
+		"image1": {
+			"sura1": "Al-Maida",
+			"sura2": "",
+			"sura3": "",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0109.webp",
+			"hasanatPage1": 6060,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura1": "An-Nisa",
+			"sura2": "Al-Maida",
+			"sura3": "",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0110.webp",
+			"hasanatPage1": 5280,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 109,
+		"image1": {
+			"sura1": "Al-Maida",
+			"sura2": "",
+			"sura3": "",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0111.webp",
+			"hasanatPage1": 4890,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura1": "Al-Maida",
+			"sura2": "",
+			"sura3": "",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0112.webp",
+			"hasanatPage1": 4360,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 111,
+		"image1": {
+			"sura1": "Al-Maida",
+			"sura2": "",
+			"sura3": "",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0113.webp",
+			"hasanatPage1": 5660,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura1": "Al-Maida",
+			"sura2": "",
+			"sura3": "",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0114.webp",
+			"hasanatPage1": 5340,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 113,
+		"image1": {
+			"sura1": "Al-Maida",
+			"sura2": "",
+			"sura3": "",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0115.webp",
+			"hasanatPage1": 5060,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura1": "Al-Maida",
+			"sura2": "",
+			"sura3": "",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0116.webp",
+			"hasanatPage1": 5080,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 115,
+		"image1": {
+			"sura1": "Al-Maida",
+			"sura2": "",
+			"sura3": "",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0117.webp",
+			"hasanatPage1": 5010,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura1": "Al-Maida",
+			"sura2": "",
+			"sura3": "",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0118.webp",
+			"hasanatPage1": 5860,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 117,
+		"image1": {
+			"sura1": "Al-Maida",
+			"sura2": "",
+			"sura3": "",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0119.webp",
+			"hasanatPage1": 6730,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura1": "Al-Maida",
+			"sura2": "",
+			"sura3": "",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0120.webp",
+			"hasanatPage1": 6490,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 119,
+		"image1": {
+			"sura1": "Al-Maida",
+			"sura2": "",
+			"sura3": "",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0121.webp",
+			"hasanatPage1": 5600,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura1": "Al-Maida",
+			"sura2": "",
+			"sura3": "",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0122.webp",
+			"hasanatPage1": 5920,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 121,
+		"image1": {
+			"sura1": "Al-Maida",
+			"sura2": "",
+			"sura3": "",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0123.webp",
+			"hasanatPage1": 4740,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura1": "Al-Maida",
+			"sura2": "",
+			"sura3": "",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0124.webp",
+			"hasanatPage1": 5600,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 123,
+		"image1": {
+			"sura1": "Al-Maida",
+			"sura2": "",
+			"sura3": "",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0125.webp",
+			"hasanatPage1": 5730,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura1": "Al-Maida",
+			"sura2": "",
+			"sura3": "",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0126.webp",
+			"hasanatPage1": 5710,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 125,
+		"image1": {
+			"sura1": "Al-Maida",
+			"sura2": "",
+			"sura3": "",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0127.webp",
+			"hasanatPage1": 6200,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura1": "Al-Maida",
+			"sura2": "",
+			"sura3": "",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0128.webp",
+			"hasanatPage1": 5450,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 127,
+		"image1": {
+			"sura1": "Al-Maida",
+			"sura2": "",
+			"sura3": "",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0129.webp",
+			"hasanatPage1": 6100,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura1": "Al-Al-Anam",
+			"sura2": "",
+			"sura3": "",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0130.webp",
+			"hasanatPage1": 5150,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 129,
+		"image1": {
+			"sura1": "Al-Maida",
+			"sura2": "",
+			"sura3": "",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0131.webp",
+			"hasanatPage1": 5140,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		},
+
+		"image2": {
+			"sura1": "Al-Anam",
+			"sura2": "",
+			"sura3": "",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0132.webp",
+			"hasanatPage1": 6450,
+			"hasanatPage2": 0,
+			"hasanatPage3": 0
+		}
+	},
+	{
+		"currentPage": 621,
+		"image1": {
+			"sura1": "Al-Asr",
+			"sura2": "Al-Humazah",
+			"sura3": "Al-Fil",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0603.webp",
+			"hasanatPage1": 710,
+			"hasanatPage2": 1340,
+			"hasanatPage3": 960
+		},
+
+		"image2": {
+			"sura1": "Al-Quraisch",
+			"sura2": "Al-Maun",
+			"sura3": "Al-Kuthar",
+			"src": "/images/quran-madina/holy-quran-beautiful-arabic-text_0604.webp",
+			"hasanatPage1": 750,
+			"hasanatPage2": 1140,
+			"hasanatPage3": 420
+		}
+	},
+	{
 		"currentPage": 623,
 		"image1": {
 			"sura1": "Al-Kafirun",

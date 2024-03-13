@@ -241,7 +241,7 @@ export default function QuranMain() {
 											key={index}
 											className={` ${
 												index === currentIndex || index === currentIndex + 1
-													? "visible flex justify-center relative w-screen h-screen max-h-[750px] qhd:max-h-[950px] fullhd:max-h-[1050px]"
+													? "visible flex justify-center relative w-screen h-screen max-h-[750px] qhd:max-h-[950px] fullhd:max-h-[1050px] bg-white pb-12"
 													: "hidden"
 											}`}>
 											<>
@@ -277,7 +277,7 @@ export default function QuranMain() {
 											key={index}
 											className={` ${
 												index === currentIndex
-													? "visible flex justify-center"
+													? "visible flex justify-center bg-white pb-6"
 													: "hidden"
 											}`}>
 											{/* <Image
