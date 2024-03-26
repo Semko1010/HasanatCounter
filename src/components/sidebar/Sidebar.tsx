@@ -95,26 +95,28 @@ export default function Siderbar(props: SidebarProps) {
 							</Link>
 						</div>
 						<nav className='flex flex-col flex-1 w-64 p-4 mt-4'>
-							{suras.map((u, index) => {
-								return (
-									<div
-										onClick={() => props.setCurrentIndex(u.page)}
-										key={index}
-										className='mt-4 ml-4'>
-										<a href='#' className='flex items-center space-x-2'>
-											<img src={u.location} alt='' />
-											<span>{u.sura}</span>
-										</a>
-									</div>
-								);
-							})}
+							<div className='overflow-scroll	overflow-x-hidden h-[40%]'>
+								{suras.map((u, index) => {
+									return (
+										<div
+											onClick={() => props.setCurrentIndex(u.page)}
+											key={index}
+											className=' mt-4 ml-4'>
+											<a href='#' className='flex items-center space-x-2'>
+												<img src={u.location} alt='' />
+												<span>{u.sura}</span>
+											</a>
+										</div>
+									);
+								})}
+							</div>
 							<div className='mt-4 text-start'>
 								<label className='text-center' htmlFor=''>
-									Search Site
+									Search a Page
 								</label>
 								<input
 									onChange={props.handleSearchInputChange}
-									className='border-4'
+									className='border-4 w-full'
 									type='text'
 								/>
 								<button onClick={props.goToSearchedImage}>Search</button>

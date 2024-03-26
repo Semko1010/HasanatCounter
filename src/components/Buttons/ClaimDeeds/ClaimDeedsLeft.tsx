@@ -44,9 +44,7 @@ export default function ClaimDeeds(props: Deeds) {
 			const loggedUser = JSON.parse(loggedUserJSON);
 			const docRef = doc(db, "login", loggedUser.email);
 			const docSnap = await getDoc(docRef);
-			console.log("suraOne", suraOne);
-			console.log("suraTwo", suraTwo);
-			console.log("suraThree", suraThree);
+
 			if (suraOne > 0 || suraTwo > 0 || suraThree > 0) {
 				if (docSnap.exists()) {
 					const hasanat = docSnap.data().hasanat || 0;
@@ -97,7 +95,7 @@ export default function ClaimDeeds(props: Deeds) {
 
 				console.log("Benutzerdaten aus dem localStorage:", loggedUser);
 			} else {
-				console.log("Keine Benutzerdaten im localStorage gefunden.");
+				("Keine Benutzerdaten im localStorage gefunden.");
 			}
 		}
 		setSuraOne(0);
@@ -111,8 +109,6 @@ export default function ClaimDeeds(props: Deeds) {
 		setInput(!input);
 	};
 	const setSuraOneFunction = (target: number) => {
-		console.log("setSuraOneFunction", suraOne);
-
 		if (suraOne == 0) {
 			setSuraOne(target);
 		} else {
@@ -120,8 +116,6 @@ export default function ClaimDeeds(props: Deeds) {
 		}
 	};
 	const setSuraTwoFunction = (target: number) => {
-		console.log("target", target);
-
 		if (suraTwo == 0) {
 			setSuraTwo(target);
 		} else {
@@ -129,19 +123,13 @@ export default function ClaimDeeds(props: Deeds) {
 		}
 	};
 	const setSuraThreeFunction = (target: number) => {
-		console.log("target", target);
-
 		if (suraThree == 0) {
 			setSuraThree(target);
 		} else {
 			setSuraThree(0);
 		}
 	};
-	useEffect(() => {
-		console.log("suraOne", suraOne);
-		console.log("suraTwo", suraTwo);
-		console.log("suraThree", suraThree);
-	}, [suraOne, suraTwo, suraThree]);
+	useEffect(() => {}, [suraOne, suraTwo, suraThree]);
 	return (
 		<>
 			<div

@@ -58,7 +58,7 @@ export default function QuranMain() {
 		setTimeout(() => {
 			setLeftHidden("");
 			setTransform(0);
-		}, 1000);
+		}, 700);
 	};
 
 	const Right = () => {
@@ -78,7 +78,7 @@ export default function QuranMain() {
 			setLeftHidden("");
 
 			setTransform(0);
-		}, 1000);
+		}, 700);
 	};
 	const onTouchMove = (e: any) => setTouchEnd(e.targetTouches[0].clientX);
 	const onTouchEnd = () => {
@@ -245,12 +245,7 @@ export default function QuranMain() {
 													: "hidden"
 											}`}>
 											<>
-												<img
-													src={image.src}
-													width={700}
-													height={900}
-													alt={image.alt}
-												/>
+												<img src={image.src} alt={image.alt} />
 												{/* <Image
 													src={image.src}
 													width={700}

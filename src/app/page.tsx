@@ -34,7 +34,7 @@ export default function Home() {
 			{loggedUser === undefined || loggedUser === false ? (
 				<>
 					{logged ? (
-						<div className=' bg-hero-pattern bg-cover bg-no-repeat h-screen flex flex-col xl:items-end items-center xl:pr-24 justify-center w-full h-full'>
+						<div className='bg-hero-pattern bg-cover bg-no-repeat h-screen flex flex-col xl:items-end items-center xl:pr-24 justify-center w-full h-full'>
 							<button
 								className='bg-green-400 px-6 py-2'
 								onClick={() => setLogged(!logged)}>
@@ -43,7 +43,7 @@ export default function Home() {
 							<Login loggedUser={loggedUser} setLoggedUser={setLoggedUser} />
 						</div>
 					) : (
-						<div className='flex flex-col items-center justify-center w-full h-full'>
+						<div className='bg-hero-pattern bg-cover bg-no-repeat h-screen flex flex-col xl:items-end items-center xl:pr-24 justify-center w-full h-full'>
 							<button
 								className='bg-green-400 px-6 py-2'
 								onClick={() => setLogged(!logged)}>

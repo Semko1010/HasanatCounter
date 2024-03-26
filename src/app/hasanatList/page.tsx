@@ -29,7 +29,7 @@ export default function HasanatList() {
 						userDataArray.push(userData);
 					}
 				});
-
+				userDataArray.sort((a, b) => b.hasanat - a.hasanat);
 				setHasanatListAll(userDataArray);
 			} catch (error) {
 				console.error("Fehler beim Abrufen der Benutzerdaten:", error);
