@@ -97,6 +97,8 @@ export default function Siderbar(props: SidebarProps) {
 						<nav className='flex flex-col flex-1 w-64 p-4 mt-4'>
 							<div className='overflow-scroll	overflow-x-hidden h-[40%]'>
 								{suras.map((u, index) => {
+									console.log("u",u);
+									
 									return (
 										<div
 											onClick={() => props.setCurrentIndex(u.page)}

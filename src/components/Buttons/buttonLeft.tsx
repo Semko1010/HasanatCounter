@@ -8,6 +8,8 @@ interface Page {
 }
 
 export default function ButtonLeft(props: Page) {
+	console.log("props",props.currentPage.currentPage += 2);
+	
 	return (
 		<a
 			onClick={() =>

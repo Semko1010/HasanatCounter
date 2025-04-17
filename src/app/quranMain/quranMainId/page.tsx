@@ -41,17 +41,19 @@ export default function QuranMain() {
 		setTouchEnd(null); // otherwise the swipe is fired even with usual touch events
 		setTouchStart(e.targetTouches[0].clientX);
 	};
+	console.log("currentPage", currentPage);
 
 	const Left = () => {
+		const step = screenValue; // Dynamische Schrittgröße
 		setTransform(-750);
 		setLeftHidden("opacity-0");
 
 		setTimeout(() => {
 			setTransform(750);
 			setCurrentIndex(
-				currentIndex - screenValue < 0
-					? preloadedImages.length - screenValue
-					: currentIndex - screenValue,
+				currentIndex - step < 0
+					? preloadedImages.length - (preloadedImages.length % step)
+					: currentIndex - step,
 			);
 		}, 250);
 
@@ -62,24 +64,23 @@ export default function QuranMain() {
 	};
 
 	const Right = () => {
+		const step = screenValue; // Dynamische Schrittgröße
 		setTransform(750);
 		setLeftHidden("opacity-0");
 
 		setTimeout(() => {
 			setTransform(-750);
 			setCurrentIndex(
-				currentIndex + screenValue >= preloadedImages.length
-					? 0
-					: currentIndex + screenValue,
+				currentIndex + step >= preloadedImages.length ? 0 : currentIndex + step,
 			);
 		}, 250);
 
 		setTimeout(() => {
 			setLeftHidden("");
-
 			setTransform(0);
 		}, 700);
 	};
+
 	const onTouchMove = (e: any) => setTouchEnd(e.targetTouches[0].clientX);
 	const onTouchEnd = () => {
 		if (!touchStart || !touchEnd) return;
@@ -124,20 +125,7 @@ export default function QuranMain() {
 				},
 			);
 		});
-		// for (const url of urls) {
-		// 	const img1 = new (window as any).Image();
-		// 	const img2 = new (window as any).Image();
 
-		// 	img1.src = url[0].image1;
-		// 	img1.alt = url[0].hasanatPage1;
-		// 	img2.src = url[0].image2;
-		// 	img2.alt = url[0].hasanatPage2;
-		// 	await new Promise((resolve, reject) => {
-		// 		img1.onload = img1.onerror = img2.onload = img2.onerror = resolve;
-		// 		img1.onabort = img2.onabort = reject;
-		// 	});
-		// 	images.push(img1, img2);
-		// }
 		return images;
 	};
 	useEffect(() => {
@@ -184,6 +172,7 @@ export default function QuranMain() {
 	const handleSearchInputChange = (event: any) => {
 		setSearchInput(parseInt(event.target.value) - 1);
 	};
+	console.log("currentIndex", currentIndex);
 
 	const goToSearchedImage = () => {
 		if (Number.isNaN(searchInput)) {
@@ -210,13 +199,13 @@ export default function QuranMain() {
 
 	return (
 		<div className='flex flex-start '>
-			<article>
+			<section>
 				<Sidebar
 					setCurrentIndex={setCurrentIndex}
 					handleSearchInputChange={handleSearchInputChange}
 					goToSearchedImage={goToSearchedImage}
 				/>
-			</article>
+			</section>
 			{preloadedImages.length > 0 ? (
 				<main className=' flex justify-center '>
 					<div className='flex gap-4'>
@@ -298,7 +287,11 @@ export default function QuranMain() {
 						</div>
 						<div className='hidden lg:flex  flex-col align-center justify-center'>
 							<div onClick={Left} className='flex justify-center items-center'>
-								<ButtonRight currentPage={{ currentPage, setCurrentPage }} />
+								{currentIndex === 0 ? (
+									""
+								) : (
+									<ButtonRight currentPage={{ currentPage, setCurrentPage }} />
+								)}
 							</div>
 						</div>
 					</div>
