@@ -283,7 +283,7 @@ export default function QuranMain() {
 								</div>
 							</div>
 
-							{/* Mobile */}
+							{/* Mobile #*/}
 						</div>
 						<div className='hidden lg:flex  flex-col align-center justify-center'>
 							<div onClick={Left} className='flex justify-center items-center'>
